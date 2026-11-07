@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - RM Enterprise Accounting</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            500: '#3b82f6', 
+                            600: '#2563eb',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bg-pattern {
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased text-gray-900 selection:bg-brand-500 selection:text-white">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        
+        <!-- Left Side: Branding / Visual -->
+        <div class="hidden md:flex md:w-1/2 bg-pattern relative items-center justify-center p-12 overflow-hidden">
+            <!-- Decorative blur blobs -->
+            <div class="absolute top-0 left-0 w-96 h-96 bg-brand-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            
+            <div class="relative z-10 text-center max-w-md flex flex-col items-center">
+                
+                <!-- Desktop Logo (Direct link from website) -->
+                <div class="mb-8 bg-white/5 p-4 rounded-2xl backdrop-blur-sm border border-white/10 shadow-2xl">
+                    <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="RM Enterprise Logo" class="w-40 h-auto object-contain drop-shadow-lg" onerror="this.outerHTML='<div class=\'inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-8 shadow-2xl\'><h1 class=\'text-3xl font-bold text-white\'>RM</h1></div>'">
+                </div>
+
+                <h1 class="text-4xl font-bold text-white mb-4 tracking-tight">RM Enterprise</h1>
+                <p class="text-lg text-slate-300 leading-relaxed font-light">
+                    Complete Accounting & Business Management System for Manpower Recruitment and Overseas Employment.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="flex-1 flex items-center justify-center p-6 sm:p-12 md:p-20 lg:p-32 bg-white relative">
+            <div class="w-full max-w-md">
+                
+                <div class="mb-10 text-center md:text-left">
+                    <!-- Mobile Logo (Shows only on small screens) -->
+                    <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="RM Enterprise Logo" class="h-16 w-auto mx-auto mb-6 md:hidden object-contain" onerror="this.style.display='none'">
+                    
+                    <h2 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">Welcome back</h2>
+                    <p class="text-gray-500">Please enter your credentials to access the secure dashboard.</p>
+                </div>
+
+                <!-- Notification Message Box -->
+                <div id="message-box" class="hidden mb-6 p-4 rounded-xl text-sm font-medium transition-all duration-300"></div>
+
+                <form id="login-form" class="space-y-6">
+                    <div class="space-y-1">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
+                            </div>
+                            <input type="email" id="email" required
+                                class="block w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all duration-200 shadow-sm"
+                                placeholder="admin@example.com">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label for="access-code" class="block text-sm font-medium text-gray-700">Secure Access Code</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" /></svg>
+                            </div>
+                            <input type="password" id="access-code" required
+                                class="block w-full pl-11 pr-12 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all duration-200 shadow-sm"
+                                placeholder="••••••••••••••••">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="login-btn"
+                        class="w-full flex items-center justify-center gap-2 py-3.5 px-4 border border-transparent rounded-xl shadow-sm text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200">
+                        <span>Sign In Securely</span>
+                        <svg id="spinner" class="animate-spin hidden h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <svg id="btn-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center">
+                    <p class="text-xs text-gray-400">
+                        &copy; <span id="year"></span> RM Enterprise. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Login Logic -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const accessCode = document.getElementById('access-code').value;
+            const btn = document.getElementById('login-btn');
+            const spinner = document.getElementById('spinner');
+            const btnIcon = document.getElementById('btn-icon');
+            const msgBox = document.getElementById('message-box');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-90', 'cursor-wait');
+            spinner.classList.remove('hidden');
+            btnIcon.classList.add('hidden');
+            msgBox.classList.add('hidden');
+            msgBox.classList.remove('bg-green-50', 'text-green-800', 'border', 'border-green-200', 'bg-red-50', 'text-red-800', 'border-red-200');
+
+            try {
+                const response = await fetch("https://mtjzgxkfqmtifgtdrbkf.supabase.co/functions/v1/admin-login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        access_code: accessCode
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    msgBox.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <span>Login successful! Welcome back, <strong>${data.user.full_name.split(' ')[0]}</strong>. Redirecting...</span>
+                        </div>
+                    `;
+                    msgBox.classList.remove('hidden');
+                    msgBox.classList.add('bg-green-50', 'text-green-800', 'border', 'border-green-200');
+                    
+                    localStorage.setItem('rm_token', data.token);
+                    localStorage.setItem('rm_user', JSON.stringify(data.user));
+
+                    setTimeout(() => {
+                         alert("লগইন সফল! আপনার ড্যাশবোর্ড পেজটি তৈরি হলে এইখান থেকে সরাসরি সেখানে চলে যাবে।");
+                         btn.disabled = false;
+                         btn.classList.remove('opacity-90', 'cursor-wait');
+                         spinner.classList.add('hidden');
+                         btnIcon.classList.remove('hidden');
+                    }, 1500);
+
+                } else {
+                    msgBox.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                            <span>${data.error || "Authentication failed. Please verify your credentials."}</span>
+                        </div>
+                    `;
+                    msgBox.classList.remove('hidden');
+                    msgBox.classList.add('bg-red-50', 'text-red-800', 'border', 'border-red-200');
+                    
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-90', 'cursor-wait');
+                    spinner.classList.add('hidden');
+                    btnIcon.classList.remove('hidden');
+                }
+            } catch (error) {
+                msgBox.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                        <span>Network error. Please check your internet connection.</span>
+                    </div>
+                `;
+                msgBox.classList.remove('hidden');
+                msgBox.classList.add('bg-red-50', 'text-red-800', 'border', 'border-red-200');
+                
+                btn.disabled = false;
+                btn.classList.remove('opacity-90', 'cursor-wait');
+                spinner.classList.add('hidden');
+                btnIcon.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
