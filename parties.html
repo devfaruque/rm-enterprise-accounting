@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parties & Agents - RM Enterprise</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { 
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 900: '#0c4a6e' },
+                        sidebar: '#ffffff',
+                        background: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script>
+        // Auth Check
+        const token = localStorage.getItem('rm_token');
+        if (!token) window.location.href = 'index.html';
+    </script>
+</head>
+<body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Premium Sidebar -->
+    <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
+        <!-- Logo Area -->
+        <div class="h-20 flex items-center px-6 border-b border-slate-100">
+            <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-[17px] font-bold text-slate-900 tracking-tight leading-tight">RM Enterprise</span>
+                <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Agency RL-1348</span>
+            </div>
+        </div>
+        
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
+            <!-- General -->
+            <div class="space-y-1.5">
+                <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                    <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+            </div>
+
+            <!-- Finance & Accounts -->
+            <div>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
+                <div class="space-y-1">
+                    <!-- Active Menu -->
+                    <a href="parties.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                        <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        Agents & Clients
+                    </a>
+                    
+                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-rose-50 hover:text-rose-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path></svg>
+                        Daily Expenses
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Voucher Entry
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Recruitment -->
+            <div>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Recruitment</h3>
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        Workers Profile
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-w-0 relative">
+        <!-- Top Header -->
+        <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Parties Management</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Manage your Agents, Clients, and Corporate Partners</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <!-- User Profile -->
+                <div class="flex items-center gap-3 cursor-pointer group">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
+                        <span id="user-initial">RA</span>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight">Loading...</p>
+                        <p class="text-xs font-medium text-slate-500">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            
+            <!-- Action Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <div class="relative w-full md:w-96">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="text" class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm shadow-sm" placeholder="Search party by name, phone or type...">
+                </div>
+                
+                <button onclick="openModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Add New Party
+                </button>
+            </div>
+
+            <!-- Parties Table -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Party Name</th>
+                                <th class="px-6 py-4 font-semibold">Type</th>
+                                <th class="px-6 py-4 font-semibold">Contact Info</th>
+                                <th class="px-6 py-4 font-semibold text-right">Opening Balance</th>
+                                <th class="px-6 py-4 font-semibold text-right">Current Balance</th>
+                                <th class="px-6 py-4 font-semibold text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="parties-table-body" class="divide-y divide-slate-100 text-sm">
+                            <!-- Dummy Data Row -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold">ST</div>
+                                        <div>
+                                            <p class="font-bold text-slate-800">Sky Travels Ltd</p>
+                                            <p class="text-xs text-slate-500">Dhaka, Bangladesh</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-50 text-indigo-600 border border-indigo-100">Agent</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <p class="text-slate-700 font-medium">01711-000000</p>
+                                    <p class="text-xs text-slate-500">info@skytravels.com</p>
+                                </td>
+                                <td class="px-6 py-4 text-right font-medium text-slate-600">৳ 0.00</td>
+                                <td class="px-6 py-4 text-right">
+                                    <p class="font-bold text-emerald-600">৳ 50,000 Cr</p>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="text-slate-400 hover:text-brand-600 transition-colors p-1.5 hover:bg-brand-50 rounded-lg">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- Modal Overlay (Add Party) -->
+    <div id="add-party-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Add New Party</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body (Form) -->
+            <div class="p-6 overflow-y-auto custom-scrollbar">
+                <form id="party-form" class="space-y-5">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Party Name -->
+                        <div class="space-y-1.5 md:col-span-2">
+                            <label class="block text-sm font-semibold text-slate-700">Party / Company Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="party_name" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
+                        </div>
+
+                        <!-- Party Type -->
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-semibold text-slate-700">Party Type <span class="text-red-500">*</span></label>
+                            <select id="party_type" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm text-slate-700">
+                                <option value="" disabled selected>Select Type</option>
+                                <option value="Agent">Agent (Sub-agent / Dalal)</option>
+                                <option value="Client">Client (Corporate / Direct)</option>
+                                <option value="Supplier">Supplier / Vendor</option>
+                            </select>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-semibold text-slate-700">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-semibold text-slate-700">Email Address</label>
+                            <input type="email" id="email" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
+                        </div>
+
+                        <!-- Opening Balance -->
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-semibold text-slate-700">Opening Balance (৳)</label>
+                            <input type="number" id="opening_balance" value="0" step="0.01" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm font-medium">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="space-y-1.5 md:col-span-2">
+                            <label class="block text-sm font-semibold text-slate-700">Full Address</label>
+                            <textarea id="address" rows="2" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Alert Box -->
+                    <div id="form-alert" class="hidden p-3 rounded-xl text-sm font-medium"></div>
+
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 rounded-xl transition-colors">Cancel</button>
+                <button onclick="saveParty(event)" id="save-btn" class="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm transition-all active:scale-95">
+                    <span>Save Party</span>
+                    <svg id="save-spinner" class="animate-spin hidden h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        // Load User Data
+        const userStr = localStorage.getItem('rm_user');
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            document.getElementById('user-name-display').textContent = user.full_name;
+            const names = user.full_name.split(' ');
+            document.getElementById('user-initial').textContent = names[0].charAt(0) + (names.length > 1 ? names[1].charAt(0) : '');
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('add-party-modal');
+        const modalInner = modal.querySelector('div');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalInner.classList.remove('scale-95');
+                modalInner.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalInner.classList.remove('scale-100');
+            modalInner.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('party-form').reset();
+                document.getElementById('form-alert').classList.add('hidden');
+            }, 300);
+        }
+
+        // Handle Form Submit
+        async function saveParty(e) {
+            e.preventDefault();
+            const form = document.getElementById('party-form');
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const btn = document.getElementById('save-btn');
+            const spinner = document.getElementById('save-spinner');
+            const alertBox = document.getElementById('form-alert');
+
+            btn.disabled = true;
+            spinner.classList.remove('hidden');
+            
+            setTimeout(() => {
+                alertBox.textContent = "Database table is not created yet! We will connect it in the next step.";
+                alertBox.className = "p-3 rounded-xl text-sm font-medium bg-amber-50 text-amber-700 border border-amber-200 mt-4 block";
+                
+                btn.disabled = false;
+                spinner.classList.add('hidden');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
