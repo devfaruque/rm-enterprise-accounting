@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - RM Enterprise Accounting</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { 50: '#f8fafc', 500: '#3b82f6', 600: '#2563eb', 900: '#0f172a' } }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Auth Check Logic (Must run before page loads) -->
+    <script>
+        const token = localStorage.getItem('rm_token');
+        if (!token) {
+            window.location.href = 'index.html'; // টোকেন না থাকলে লগইন পেজে পাঠিয়ে দেবে
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
+        <div class="h-16 flex items-center px-6 border-b border-gray-200">
+            <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-8 w-auto mr-2">
+            <span class="text-lg font-bold text-brand-900 tracking-tight">RM Enterprise</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+            <a href="#" class="flex items-center px-3 py-2.5 bg-brand-50 text-brand-600 rounded-lg font-medium">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                Dashboard
+            </a>
+            <!-- অন্যান্য মেন্যু আইটেম পরে এখানে যোগ করা হবে -->
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Top Header -->
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+            <h2 class="text-xl font-semibold text-gray-800">Overview</h2>
+            <div class="flex items-center gap-4">
+                <span id="user-name-display" class="text-sm font-medium text-gray-600">Loading...</span>
+                <button id="logout-btn" class="text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 px-3 py-1.5 rounded-md transition-colors">
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="flex-1 overflow-y-auto p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Sample Data Cards -->
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500 mb-1">Total Workers Processing</h3>
+                    <p class="text-3xl font-bold text-gray-900">124</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500 mb-1">Active Visas</h3>
+                    <p class="text-3xl font-bold text-gray-900">45</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                    <h3 class="text-sm font-medium text-gray-500 mb-1">Pending Flights</h3>
+                    <p class="text-3xl font-bold text-gray-900">12</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- UI Logic Script -->
+    <script>
+        // ইউজারের নাম ড্যাশবোর্ডে দেখানো
+        const userStr = localStorage.getItem('rm_user');
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            document.getElementById('user-name-display').textContent = user.full_name;
+        }
+
+        // লগআউট সিস্টেম
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('rm_token');
+            localStorage.removeItem('rm_user');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

@@ -169,12 +169,8 @@
                     localStorage.setItem('rm_user', JSON.stringify(data.user));
 
                     setTimeout(() => {
-                         alert("লগইন সফল! আপনার ড্যাশবোর্ড পেজটি তৈরি হলে এইখান থেকে সরাসরি সেখানে চলে যাবে।");
-                         btn.disabled = false;
-                         btn.classList.remove('opacity-90', 'cursor-wait');
-                         spinner.classList.add('hidden');
-                         btnIcon.classList.remove('hidden');
-                    }, 1500);
+                             window.location.href = 'dashboard.html'; // অ্যালার্টের বদলে এই লাইনটি বসবে
+                             }, 1000);
 
                 } else {
                     msgBox.innerHTML = `
