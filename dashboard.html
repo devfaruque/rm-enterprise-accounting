@@ -12,65 +12,145 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { brand: { 50: '#f8fafc', 500: '#3b82f6', 600: '#2563eb', 900: '#0f172a' } }
+                    colors: { brand: { 50: '#f8fafc', 100: '#f1f5f9', 500: '#3b82f6', 600: '#2563eb', 900: '#0f172a' } }
                 }
             }
         }
     </script>
     
-    <!-- Auth Check Logic (Must run before page loads) -->
+    <!-- Auth Check Logic -->
     <script>
         const token = localStorage.getItem('rm_token');
-        if (!token) {
-            window.location.href = 'index.html'; // টোকেন না থাকলে লগইন পেজে পাঠিয়ে দেবে
-        }
+        if (!token) window.location.href = 'index.html';
     </script>
 </head>
 <body class="bg-gray-50 font-sans text-gray-900 flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
+    <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col shadow-sm z-10">
+        <!-- Logo Area -->
         <div class="h-16 flex items-center px-6 border-b border-gray-200">
             <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-8 w-auto mr-2">
             <span class="text-lg font-bold text-brand-900 tracking-tight">RM Enterprise</span>
         </div>
-        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-            <a href="#" class="flex items-center px-3 py-2.5 bg-brand-50 text-brand-600 rounded-lg font-medium">
-                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                Dashboard
-            </a>
-            <!-- অন্যান্য মেন্যু আইটেম পরে এখানে যোগ করা হবে -->
+        
+        <!-- Navigation Menu -->
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-6">
+            
+            <!-- General -->
+            <div class="space-y-1">
+                <a href="#" class="flex items-center px-3 py-2.5 bg-brand-50 text-brand-600 rounded-lg font-medium transition-colors">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+            </div>
+
+            <!-- Recruitment & Processing -->
+            <div>
+                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Recruitment</h3>
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        Candidates / Workers
+                    </a>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Visa Processing
+                    </a>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Ticketing & Flights
+                    </a>
+                </div>
+            </div>
+
+            <!-- Accounting & Finance -->
+            <div>
+                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Accounting</h3>
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        Parties (Agents/Clients)
+                    </a>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Voucher Entry
+                    </a>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        Ledgers / Chart of Accounts
+                    </a>
+                </div>
+            </div>
+
+            <!-- Settings & Reports -->
+            <div>
+                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Reports & Setup</h3>
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Financial Reports
+                    </a>
+                    <a href="#" class="flex items-center px-3 py-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg font-medium transition-colors">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        System Settings
+                    </a>
+                </div>
+            </div>
         </nav>
     </aside>
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
         <!-- Top Header -->
-        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
-            <h2 class="text-xl font-semibold text-gray-800">Overview</h2>
+        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shadow-sm z-0">
+            <h2 class="text-xl font-semibold text-gray-800">Dashboard Overview</h2>
             <div class="flex items-center gap-4">
-                <span id="user-name-display" class="text-sm font-medium text-gray-600">Loading...</span>
-                <button id="logout-btn" class="text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 px-3 py-1.5 rounded-md transition-colors">
+                <span id="user-name-display" class="text-sm font-semibold text-gray-700">Loading...</span>
+                <button id="logout-btn" class="text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-lg transition-colors shadow-sm">
                     Logout
                 </button>
             </div>
         </header>
 
         <!-- Page Content -->
-        <main class="flex-1 overflow-y-auto p-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Sample Data Cards -->
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                    <h3 class="text-sm font-medium text-gray-500 mb-1">Total Workers Processing</h3>
-                    <p class="text-3xl font-bold text-gray-900">124</p>
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 mb-1">Total Workers Processing</h3>
+                        <p class="text-3xl font-bold text-gray-900">124</p>
+                    </div>
+                    <div class="p-3 bg-blue-50 text-blue-600 rounded-lg">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                    <h3 class="text-sm font-medium text-gray-500 mb-1">Active Visas</h3>
-                    <p class="text-3xl font-bold text-gray-900">45</p>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 mb-1">Active Visas</h3>
+                        <p class="text-3xl font-bold text-gray-900">45</p>
+                    </div>
+                    <div class="p-3 bg-green-50 text-green-600 rounded-lg">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                    <h3 class="text-sm font-medium text-gray-500 mb-1">Pending Flights</h3>
-                    <p class="text-3xl font-bold text-gray-900">12</p>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 mb-1">Pending Flights</h3>
+                        <p class="text-3xl font-bold text-gray-900">12</p>
+                    </div>
+                    <div class="p-3 bg-yellow-50 text-yellow-600 rounded-lg">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder for recent activity -->
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activities</h3>
+                <div class="text-center py-10 text-gray-400">
+                    <p>No recent activity found. Connect to database to load data.</p>
                 </div>
             </div>
         </main>
@@ -78,14 +158,12 @@
 
     <!-- UI Logic Script -->
     <script>
-        // ইউজারের নাম ড্যাশবোর্ডে দেখানো
         const userStr = localStorage.getItem('rm_user');
         if (userStr) {
             const user = JSON.parse(userStr);
             document.getElementById('user-name-display').textContent = user.full_name;
         }
 
-        // লগআউট সিস্টেম
         document.getElementById('logout-btn').addEventListener('click', function() {
             localStorage.removeItem('rm_token');
             localStorage.removeItem('rm_user');
