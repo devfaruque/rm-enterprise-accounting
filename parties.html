@@ -27,7 +27,7 @@
     </script>
     
     <script>
-        // Auth Check
+        // Auth Check (সাময়িকভাবে বন্ধ রাখতে চাইলে নিচের ২ লাইনের আগে // দিয়ে দেবেন)
         const token = localStorage.getItem('rm_token');
         if (!token) window.location.href = 'index.html';
     </script>
@@ -36,7 +36,6 @@
 
     <!-- Premium Sidebar -->
     <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
-        <!-- Logo Area -->
         <div class="h-20 flex items-center px-6 border-b border-slate-100">
             <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
             <div class="flex flex-col">
@@ -45,9 +44,7 @@
             </div>
         </div>
         
-        <!-- Navigation Menu -->
         <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
-            <!-- General -->
             <div class="space-y-1.5">
                 <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
                     <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -55,11 +52,9 @@
                 </a>
             </div>
 
-            <!-- Finance & Accounts -->
             <div>
                 <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
                 <div class="space-y-1">
-                    <!-- Active Menu -->
                     <a href="parties.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
                         <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                         Agents & Clients
@@ -69,9 +64,7 @@
         </nav>
     </aside>
 
-    <!-- Main Content -->
     <div class="flex-1 flex flex-col min-w-0 relative">
-        <!-- Top Header -->
         <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
             <div>
                 <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Parties Management</h2>
@@ -79,7 +72,6 @@
             </div>
             
             <div class="flex items-center gap-6">
-                <!-- User Profile -->
                 <div class="flex items-center gap-3 cursor-pointer group">
                     <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
                         <span id="user-initial">RA</span>
@@ -92,10 +84,7 @@
             </div>
         </header>
 
-        <!-- Page Content -->
         <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
-            
-            <!-- Action Bar -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                 <div class="relative w-full md:w-96">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -110,7 +99,6 @@
                 </button>
             </div>
 
-            <!-- Parties Table -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -141,7 +129,7 @@
         </main>
     </div>
 
-    <!-- Modal Overlay (Add Party) -->
+    <!-- Modal Overlay -->
     <div id="add-party-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
             
@@ -209,14 +197,12 @@
         // ==========================================
         const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
         
-        // শুধু নিচের 'এখানে_আপনার_PUBLISHABLE_KEY_বসাবেন' লেখাটি মুছে আপনার কপি করা Key টি বসান
+        // এখানে আপনার সঠিক Legacy Key টি আমি বসিয়ে দিয়েছি
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10anpneGtmcW10aWZndGRyYmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM4MTMwNDEsImV4cCI6MjEwOTM4OTA0MX0.3W3RxgtzGMJgssrjx18-Z96SkxtD7ZNGqnfhJt9aRiE';
         // ==========================================
 
-        // FIXED: Changed variable name from 'supabase' to 'supabaseClient'
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Load User Data
         const userStr = localStorage.getItem('rm_user');
         if (userStr) {
             const user = JSON.parse(userStr);
@@ -225,7 +211,6 @@
             document.getElementById('user-initial').textContent = names[0].charAt(0) + (names.length > 1 ? names[1].charAt(0) : '');
         }
 
-        // Modal Logic
         const modal = document.getElementById('add-party-modal');
         const modalInner = modal.querySelector('div');
 
@@ -251,7 +236,6 @@
 
         let allParties = [];
         async function fetchParties() {
-            // FIXED: Using supabaseClient
             const { data, error } = await supabaseClient
                 .from('parties')
                 .select('*')
@@ -350,7 +334,6 @@
                 address: document.getElementById('address').value
             };
 
-            // FIXED: Using supabaseClient
             const { data, error } = await supabaseClient
                 .from('parties')
                 .insert([newParty]);
