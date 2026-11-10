@@ -64,26 +64,6 @@
                         <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                         Agents & Clients
                     </a>
-                    
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-rose-50 hover:text-rose-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path></svg>
-                        Daily Expenses
-                    </a>
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        Voucher Entry
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Recruitment -->
-            <div>
-                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Recruitment</h3>
-                <div class="space-y-1">
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        Workers Profile
-                    </a>
                 </div>
             </div>
         </nav>
@@ -145,7 +125,6 @@
                             </tr>
                         </thead>
                         <tbody id="parties-table-body" class="divide-y divide-slate-100 text-sm">
-                            <!-- Data will be loaded here dynamically -->
                             <tr>
                                 <td colspan="6" class="text-center py-10">
                                     <div class="flex flex-col items-center justify-center text-slate-400">
@@ -166,7 +145,6 @@
     <div id="add-party-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
             
-            <!-- Modal Header -->
             <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
                 <h3 class="text-lg font-bold text-slate-800">Add New Party</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
@@ -174,18 +152,14 @@
                 </button>
             </div>
 
-            <!-- Modal Body (Form) -->
             <div class="p-6 overflow-y-auto custom-scrollbar">
                 <form id="party-form" class="space-y-5">
-                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <!-- Party Name -->
                         <div class="space-y-1.5 md:col-span-2">
                             <label class="block text-sm font-semibold text-slate-700">Party / Company Name <span class="text-red-500">*</span></label>
                             <input type="text" id="party_name" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
                         </div>
 
-                        <!-- Party Type -->
                         <div class="space-y-1.5">
                             <label class="block text-sm font-semibold text-slate-700">Party Type <span class="text-red-500">*</span></label>
                             <select id="party_type" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm text-slate-700">
@@ -196,38 +170,30 @@
                             </select>
                         </div>
 
-                        <!-- Phone Number -->
                         <div class="space-y-1.5">
                             <label class="block text-sm font-semibold text-slate-700">Phone Number <span class="text-red-500">*</span></label>
                             <input type="tel" id="phone" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
                         </div>
 
-                        <!-- Email -->
                         <div class="space-y-1.5">
                             <label class="block text-sm font-semibold text-slate-700">Email Address</label>
                             <input type="email" id="email" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
                         </div>
 
-                        <!-- Opening Balance -->
                         <div class="space-y-1.5">
                             <label class="block text-sm font-semibold text-slate-700">Opening Balance (৳)</label>
                             <input type="number" id="opening_balance" value="0" step="0.01" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm font-medium">
                         </div>
 
-                        <!-- Address -->
                         <div class="space-y-1.5 md:col-span-2">
                             <label class="block text-sm font-semibold text-slate-700">Full Address</label>
                             <textarea id="address" rows="2" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm"></textarea>
                         </div>
                     </div>
-
-                    <!-- Alert Box -->
                     <div id="form-alert" class="hidden p-3 rounded-xl text-sm font-medium"></div>
-
                 </form>
             </div>
 
-            <!-- Modal Footer -->
             <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
                 <button onclick="closeModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 rounded-xl transition-colors">Cancel</button>
                 <button onclick="saveParty(event)" id="save-btn" class="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm transition-all active:scale-95">
@@ -241,17 +207,16 @@
     <!-- Script Logic -->
     <script>
         // ==========================================
-        // আপনার Supabase URL আগে থেকেই বসানো আছে
         const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
         
         // শুধু নিচের 'এখানে_আপনার_PUBLISHABLE_KEY_বসাবেন' লেখাটি মুছে আপনার কপি করা Key টি বসান
-        const SUPABASE_ANON_KEY = 'sb_publishable_hDM75F4wju1syfUO63BrBg_aTFuYxr5';
+        const SUPABASE_ANON_KEY = 'এখানে_আপনার_PUBLISHABLE_KEY_বসাবেন';
         // ==========================================
 
-        // Supabase Client Initialization
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // FIXED: Changed variable name from 'supabase' to 'supabaseClient'
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Load User Data for Header
+        // Load User Data
         const userStr = localStorage.getItem('rm_user');
         if (userStr) {
             const user = JSON.parse(userStr);
@@ -284,10 +249,10 @@
             }, 300);
         }
 
-        // Load Parties from Database
         let allParties = [];
         async function fetchParties() {
-            const { data, error } = await supabase
+            // FIXED: Using supabaseClient
+            const { data, error } = await supabaseClient
                 .from('parties')
                 .select('*')
                 .order('created_at', { ascending: false });
@@ -301,10 +266,9 @@
             renderParties(allParties);
         }
 
-        // Render Parties in Table
         function renderParties(parties) {
             const tbody = document.getElementById('parties-table-body');
-            tbody.innerHTML = ''; // Clear table
+            tbody.innerHTML = ''; 
             
             if(parties.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-500 font-medium">No parties found. Click 'Add New Party' to create one.</td></tr>`;
@@ -312,10 +276,7 @@
             }
 
             parties.forEach(party => {
-                // Generate Avatar Initials
                 const initials = party.party_name.substring(0, 2).toUpperCase();
-                
-                // Color formatting based on type
                 let typeBadge = '';
                 if(party.party_type === 'Agent') typeBadge = 'bg-indigo-50 text-indigo-600 border-indigo-100';
                 else if(party.party_type === 'Client') typeBadge = 'bg-emerald-50 text-emerald-600 border-emerald-100';
@@ -345,7 +306,7 @@
                         <p class="font-bold text-emerald-600">৳ ${Number(party.opening_balance).toLocaleString()} Cr</p>
                     </td>
                     <td class="px-6 py-4 text-center">
-                        <button class="text-slate-400 hover:text-brand-600 transition-colors p-1.5 hover:bg-brand-50 rounded-lg" title="Edit Party">
+                        <button class="text-slate-400 hover:text-brand-600 transition-colors p-1.5 hover:bg-brand-50 rounded-lg">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                         </button>
                     </td>
@@ -354,7 +315,6 @@
             });
         }
 
-        // Live Search Functionality
         function searchParties() {
             const searchText = document.getElementById('search-input').value.toLowerCase();
             const filtered = allParties.filter(party => 
@@ -365,7 +325,6 @@
             renderParties(filtered);
         }
 
-        // Save New Party to Database
         async function saveParty(e) {
             e.preventDefault();
             const form = document.getElementById('party-form');
@@ -378,12 +337,10 @@
             const spinner = document.getElementById('save-spinner');
             const alertBox = document.getElementById('form-alert');
 
-            // Show loading
             btn.disabled = true;
             spinner.classList.remove('hidden');
             alertBox.classList.add('hidden');
             
-            // Get form values
             const newParty = {
                 party_name: document.getElementById('party_name').value,
                 party_type: document.getElementById('party_type').value,
@@ -393,8 +350,8 @@
                 address: document.getElementById('address').value
             };
 
-            // Insert into Supabase
-            const { data, error } = await supabase
+            // FIXED: Using supabaseClient
+            const { data, error } = await supabaseClient
                 .from('parties')
                 .insert([newParty]);
 
@@ -405,11 +362,9 @@
                 alertBox.textContent = "Error saving data: " + error.message;
                 alertBox.className = "p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700 border border-red-200 mt-4 block";
             } else {
-                // Success! Close modal and refresh table
                 closeModal();
                 fetchParties(); 
                 
-                // Show temporary success message inside search bar placeholder
                 const searchBox = document.getElementById('search-input');
                 const oldPlaceholder = searchBox.placeholder;
                 searchBox.placeholder = "Party saved successfully!";
@@ -417,7 +372,6 @@
             }
         }
 
-        // Initialize table on page load
         window.onload = fetchParties;
     </script>
 </body>
