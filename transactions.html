@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions & Ledger - RM Enterprise</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { 
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 900: '#0c4a6e' },
+                        sidebar: '#ffffff',
+                        background: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Premium Sidebar -->
+    <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
+        <div class="h-20 flex items-center px-6 border-b border-slate-100">
+            <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-[17px] font-bold text-slate-900 tracking-tight leading-tight">RM Enterprise</span>
+                <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Agency RL-1348</span>
+            </div>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
+            <div class="space-y-1.5">
+                <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                    <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+            </div>
+
+            <div>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
+                <div class="space-y-1">
+                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Agents & Clients
+                    </a>
+                    <a href="transactions.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                        <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Transactions Ledger
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 relative">
+        <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Transactions & Ledger</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Record payments received and bills generated</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3 cursor-pointer group">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
+                        <span id="user-initial">RA</span>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <div class="relative w-full md:w-96">
+                    <!-- সার্চ অপশন -->
+                </div>
+                
+                <button onclick="openTransactionModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    New Transaction
+                </button>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Date</th>
+                                <th class="px-6 py-4 font-semibold">Party Name</th>
+                                <th class="px-6 py-4 font-semibold">Description / Remarks</th>
+                                <th class="px-6 py-4 font-semibold text-right">Debit (Bill)</th>
+                                <th class="px-6 py-4 font-semibold text-right">Credit (Received)</th>
+                                <th class="px-6 py-4 font-semibold text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-table-body" class="divide-y divide-slate-100 text-sm">
+                            <tr>
+                                <td colspan="6" class="text-center py-10">
+                                    <div class="flex flex-col items-center justify-center text-slate-400">
+                                        <svg class="animate-spin h-8 w-8 mb-4 text-brand-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                        <p>Loading transactions...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="transaction-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Add New Transaction</h3>
+                <button onclick="closeTransactionModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto custom-scrollbar">
+                <form id="transaction-form" class="space-y-5">
+                    <div class="space-y-1.5">
+                        <label class="block text-sm font-semibold text-slate-700">Select Party <span class="text-red-500">*</span></label>
+                        <select id="party_id" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm text-slate-700">
+                            <option value="" disabled selected>Loading parties...</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-semibold text-slate-700">Transaction Type <span class="text-red-500">*</span></label>
+                            <select id="transaction_type" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm text-slate-700">
+                                <option value="" disabled selected>Select Type</option>
+                                <option value="Credit" class="text-emerald-600 font-medium">Credit (Received Money)</option>
+                                <option value="Debit" class="text-red-600 font-medium">Debit (Bill/Invoice)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-semibold text-slate-700">Date <span class="text-red-500">*</span></label>
+                            <input type="date" id="transaction_date" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-sm font-semibold text-slate-700">Amount (৳) <span class="text-red-500">*</span></label>
+                        <input type="number" id="amount" required step="0.01" min="1" placeholder="Enter amount..." class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm font-bold text-slate-800">
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-sm font-semibold text-slate-700">Description / Remarks</label>
+                        <textarea id="description" rows="2" placeholder="Ex: Cash received via Bkash, Ticket booked for Dubai..." class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm"></textarea>
+                    </div>
+
+                    <div id="form-alert" class="hidden p-3 rounded-xl text-sm font-medium"></div>
+                </form>
+            </div>
+
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeTransactionModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 rounded-xl transition-colors">Cancel</button>
+                <button onclick="saveTransaction(event)" id="save-btn" class="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm transition-all active:scale-95">
+                    <span>Save Transaction</span>
+                    <svg id="save-spinner" class="animate-spin hidden h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10anpneGtmcW10aWZndGRyYmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM4MTMwNDEsImV4cCI6MjEwOTM4OTA0MX0.3W3RxgtzGMJgssrjx18-Z96SkxtD7ZNGqnfhJt9aRiE';
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const modal = document.getElementById('transaction-modal');
+        const modalInner = modal.querySelector('div');
+
+        // আজকের তারিখ অটোমেটিক সেট করা
+        document.getElementById('transaction_date').valueAsDate = new Date();
+
+        function openTransactionModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalInner.classList.remove('scale-95');
+                modalInner.classList.add('scale-100');
+            }, 10);
+            loadPartiesDropdown(); // ফর্ম ওপেন হলে পার্টির নামগুলো লিস্টে আসবে
+        }
+
+        function closeTransactionModal() {
+            modal.classList.add('opacity-0');
+            modalInner.classList.remove('scale-100');
+            modalInner.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('transaction-form').reset();
+                document.getElementById('transaction_date').valueAsDate = new Date();
+                document.getElementById('form-alert').classList.add('hidden');
+            }, 300);
+        }
+
+        // পার্টি টেবিল থেকে নামগুলো এনে ড্রপডাউনে বসানো
+        async function loadPartiesDropdown() {
+            const { data, error } = await supabaseClient
+                .from('parties')
+                .select('id, party_name')
+                .order('party_name', { ascending: true });
+            
+            if (data) {
+                const select = document.getElementById('party_id');
+                select.innerHTML = '<option value="" disabled selected>Select a Party</option>';
+                data.forEach(party => {
+                    select.innerHTML += `<option value="${party.id}">${party.party_name}</option>`;
+                });
+            }
+        }
+
+        // লেনদেন ফেচ করে টেবিলে দেখানো
+        async function fetchTransactions() {
+            const { data, error } = await supabaseClient
+                .from('transactions')
+                .select('*, parties(party_name)')
+                .order('transaction_date', { ascending: false })
+                .order('created_at', { ascending: false });
+            
+            const tbody = document.getElementById('transactions-table-body');
+            tbody.innerHTML = ''; 
+
+            if (error) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-red-500">Error loading transactions</td></tr>`;
+                return;
+            }
+            
+            if(!data || data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-500 font-medium">No transactions found. Click 'New Transaction' to record one.</td></tr>`;
+                return;
+            }
+
+            data.forEach(trx => {
+                const partyName = trx.parties ? trx.parties.party_name : 'Unknown Party';
+                const formattedDate = new Date(trx.transaction_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                
+                let debitAmount = '-';
+                let creditAmount = '-';
+                
+                if(trx.transaction_type === 'Debit') {
+                    debitAmount = `<span class="text-red-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                } else {
+                    creditAmount = `<span class="text-emerald-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50/50 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-slate-600">${formattedDate}</td>
+                    <td class="px-6 py-4 font-bold text-slate-800">${partyName}</td>
+                    <td class="px-6 py-4 text-slate-600 text-sm">${trx.description || '-'}</td>
+                    <td class="px-6 py-4 text-right bg-red-50/30">${debitAmount}</td>
+                    <td class="px-6 py-4 text-right bg-emerald-50/30">${creditAmount}</td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="deleteTransaction(${trx.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // নতুন ট্রানজ্যাকশন সেভ করা
+        async function saveTransaction(e) {
+            e.preventDefault();
+            const form = document.getElementById('transaction-form');
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const btn = document.getElementById('save-btn');
+            const spinner = document.getElementById('save-spinner');
+            const alertBox = document.getElementById('form-alert');
+
+            btn.disabled = true;
+            spinner.classList.remove('hidden');
+            alertBox.classList.add('hidden');
+            
+            const newTrx = {
+                party_id: document.getElementById('party_id').value,
+                transaction_type: document.getElementById('transaction_type').value,
+                amount: parseFloat(document.getElementById('amount').value),
+                transaction_date: document.getElementById('transaction_date').value,
+                description: document.getElementById('description').value
+            };
+
+            const { error } = await supabaseClient
+                .from('transactions')
+                .insert([newTrx]);
+
+            btn.disabled = false;
+            spinner.classList.add('hidden');
+
+            if (error) {
+                alertBox.textContent = "Error saving data: " + error.message;
+                alertBox.className = "p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700 border border-red-200 mt-4 block";
+            } else {
+                closeTransactionModal();
+                fetchTransactions(); 
+            }
+        }
+
+        async function deleteTransaction(id) {
+            if(confirm("Are you sure you want to delete this transaction record?")) {
+                const { error } = await supabaseClient
+                    .from('transactions')
+                    .delete()
+                    .eq('id', id);
+                
+                if(error) {
+                    alert("Error deleting transaction: " + error.message);
+                } else {
+                    fetchTransactions(); 
+                }
+            }
+        }
+
+        fetchTransactions();
+    </script>
+</body>
+</html>
