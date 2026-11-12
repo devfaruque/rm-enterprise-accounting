@@ -126,7 +126,6 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
             
             <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                <!-- ডায়নামিক টাইটেল -->
                 <h3 id="modal-title" class="text-lg font-bold text-slate-800">Add New Party</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -181,7 +180,6 @@
             <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
                 <button onclick="closeModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 rounded-xl transition-colors">Cancel</button>
                 <button onclick="saveParty(event)" id="save-btn" class="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm transition-all active:scale-95">
-                    <!-- ডায়নামিক বাটন টেক্সট -->
                     <span id="save-btn-text">Save Party</span>
                     <svg id="save-spinner" class="animate-spin hidden h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                 </button>
@@ -199,12 +197,11 @@
         const modal = document.getElementById('add-party-modal');
         const modalInner = modal.querySelector('div');
 
-        // মডাল ওপেন করা (Add New-এর জন্য)
         function openModal() {
             document.getElementById('modal-title').textContent = "Add New Party";
             document.getElementById('save-btn-text').textContent = "Save Party";
-            document.getElementById('edit_party_id').value = ""; // আইডি ফাঁকা করে দেওয়া
-            document.getElementById('party-form').reset(); // ফর্ম ফাঁকা করে দেওয়া
+            document.getElementById('edit_party_id').value = ""; 
+            document.getElementById('party-form').reset(); 
 
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -214,7 +211,6 @@
             }, 10);
         }
 
-        // মডাল বন্ধ করা
         function closeModal() {
             modal.classList.add('opacity-0');
             modalInner.classList.remove('scale-100');
@@ -285,11 +281,11 @@
                     <td class="px-6 py-4 text-center">
                         <div class="flex items-center justify-center gap-2">
                             <!-- Edit Button -->
-                            <button onclick="editParty(${party.id})" class="text-slate-400 hover:text-brand-600 transition-colors p-1.5 hover:bg-brand-50 rounded-lg" title="Edit">
+                            <button onclick="editParty('${party.id}')" class="text-slate-400 hover:text-brand-600 transition-colors p-1.5 hover:bg-brand-50 rounded-lg" title="Edit">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                             </button>
                             <!-- Delete Button -->
-                            <button onclick="deleteParty(${party.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
+                            <button onclick="deleteParty('${party.id}')" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                             </button>
                         </div>
@@ -309,13 +305,10 @@
             renderParties(filtered);
         }
 
-        // --- নতুন এডিট লজিক ---
         function editParty(id) {
-            // ওই নির্দিষ্ট পার্টির ডাটা খুঁজে বের করা
-            const party = allParties.find(p => p.id === id);
+            const party = allParties.find(p => p.id == id);
             if(!party) return;
 
-            // ফর্মে ডাটাগুলো বসিয়ে দেওয়া
             document.getElementById('edit_party_id').value = party.id;
             document.getElementById('party_name').value = party.party_name;
             document.getElementById('party_type').value = party.party_type;
@@ -324,11 +317,9 @@
             document.getElementById('opening_balance').value = party.opening_balance || 0;
             document.getElementById('address').value = party.address || '';
 
-            // টাইটেল ও বাটনের নাম পরিবর্তন
             document.getElementById('modal-title').textContent = "Edit Party Details";
             document.getElementById('save-btn-text').textContent = "Update Party";
 
-            // মডাল ওপেন করা
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
@@ -337,7 +328,6 @@
             }, 10);
         }
 
-        // ডাটাবেসে সেভ বা আপডেট করার ফাংশন
         async function saveParty(e) {
             e.preventDefault();
             const form = document.getElementById('party-form');
@@ -366,7 +356,6 @@
 
             let resultError = null;
 
-            // যদি editId থাকে, তারমানে ডাটা আপডেট হবে। না থাকলে নতুন ইনসার্ট হবে।
             if(editId) {
                 const { error } = await supabaseClient
                     .from('parties')
@@ -388,7 +377,7 @@
                 alertBox.className = "p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700 border border-red-200 mt-4 block";
             } else {
                 closeModal();
-                fetchParties(); // ডাটা আপডেট হওয়ার পর টেবিল রিফ্রেশ করা
+                fetchParties(); 
                 
                 const searchBox = document.getElementById('search-input');
                 const oldPlaceholder = searchBox.placeholder;
