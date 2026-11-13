@@ -25,6 +25,32 @@
             }
         }
     </script>
+    
+    <!-- Print Specific CSS -->
+    <style>
+        .print-header { display: none; }
+        @media print {
+            @page { margin: 15mm; }
+            body { background: white !important; font-family: 'Plus Jakarta Sans', sans-serif; }
+            /* Hide sidebar, topbar, and buttons during print */
+            aside, header, .no-print, button { display: none !important; }
+            .flex-1 { margin: 0 !important; padding: 0 !important; overflow: visible !important; }
+            main { padding: 0 !important; overflow: visible !important; }
+            
+            /* Print Header for hardcopy */
+            .print-header { display: block !important; text-align: center; margin-bottom: 20px; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+            .print-header h1 { font-size: 24px; font-weight: bold; color: #0f172a; margin-bottom: 5px; }
+            .print-header p { font-size: 14px; color: #64748b; }
+            
+            /* Table formatting for print */
+            .shadow-\[0_2px_10px_rgba\(0\,0\,0\,0\.02\)\] { box-shadow: none !important; border: none !important; }
+            table { width: 100% !important; border-collapse: collapse !important; }
+            th, td { border: 1px solid #cbd5e1 !important; padding: 10px !important; color: black !important; }
+            th { background-color: #f8fafc !important; font-weight: bold !important; -webkit-print-color-adjust: exact; }
+            .bg-red-50\/30, .bg-emerald-50\/30 { background: transparent !important; }
+            .text-red-600, .text-emerald-600 { color: black !important; } /* Optional: keep black/white for clear print */
+        }
+    </style>
 </head>
 <body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
 
@@ -47,25 +73,17 @@
             </div>
 
             <div>
-                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Admin</h3>
                 <div class="space-y-1">
-                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        Agents & Clients
-                    </a>
+                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Agents & Clients</a>
                     <!-- Transactions (Active) -->
-                    <a href="transactions.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                    <a href="transactions.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md transition-all">
                         <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         Transactions Ledger
                     </a>
-                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                        Banking & Accounts
-                    </a>
-                    <a href="expenses.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                        Daily Expenses
-                    </a>
+                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Banking & Accounts</a>
+                    <a href="expenses.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Daily Expenses</a>
+                    <a href="payroll.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">HR & Payroll</a>
                 </div>
             </div>
         </nav>
@@ -80,25 +98,49 @@
             
             <div class="flex items-center gap-6">
                 <div class="flex items-center gap-3 cursor-pointer group">
-                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
-                        <span id="user-initial">RA</span>
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">RA</div>
                     <div class="hidden md:block text-right">
-                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
+                        <p class="text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
                     </div>
                 </div>
             </div>
         </header>
 
         <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <div class="relative w-full md:w-96">
+            
+            <!-- Hidden Print Header (Only visible on paper) -->
+            <div class="print-header">
+                <h1>RM Enterprise</h1>
+                <p>Daily Transaction Report</p>
+                <p id="print-date-label">Date: All Records</p>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 no-print">
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <!-- Date Filter -->
+                    <div class="flex flex-col">
+                        <label class="text-xs font-bold text-slate-500 mb-1">Filter by Date:</label>
+                        <input type="date" id="date-filter" onchange="filterTransactions()" class="px-4 py-2 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 text-sm font-semibold text-slate-700 shadow-sm cursor-pointer">
+                    </div>
+                    
+                    <div class="flex flex-col mt-5">
+                        <button onclick="clearFilter()" class="px-3 py-2 text-sm font-medium text-slate-500 hover:text-slate-700 underline transition-colors">Show All</button>
+                    </div>
                 </div>
                 
-                <button onclick="openTransactionModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    New Transaction
-                </button>
+                <div class="flex gap-3 w-full md:w-auto mt-5 md:mt-0">
+                    <!-- Print Button -->
+                    <button onclick="printReport()" class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-900 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition-all active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        Print Daily Report
+                    </button>
+
+                    <button onclick="openTransactionModal()" class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        New Transaction
+                    </button>
+                </div>
             </div>
 
             <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
@@ -111,7 +153,7 @@
                                 <th class="px-6 py-4 font-semibold">Description / Remarks</th>
                                 <th class="px-6 py-4 font-semibold text-right">Debit (Bill)</th>
                                 <th class="px-6 py-4 font-semibold text-right">Credit (Received)</th>
-                                <th class="px-6 py-4 font-semibold text-center">Action</th>
+                                <th class="px-6 py-4 font-semibold text-center no-print">Action</th>
                             </tr>
                         </thead>
                         <tbody id="transactions-table-body" class="divide-y divide-slate-100 text-sm">
@@ -131,7 +173,7 @@
     </div>
 
     <!-- Add Transaction Modal -->
-    <div id="transaction-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+    <div id="transaction-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300 no-print">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
             
             <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
@@ -199,55 +241,137 @@
 
         const modal = document.getElementById('transaction-modal');
         const modalInner = modal.querySelector('div');
+        let allTransactions = []; // Store all transactions globally for filtering
 
         document.getElementById('transaction_date').valueAsDate = new Date();
+        document.getElementById('date-filter').valueAsDate = new Date(); // Set filter to today
 
         function openTransactionModal() {
             modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalInner.classList.remove('scale-95');
-                modalInner.classList.add('scale-100');
-            }, 10);
+            setTimeout(() => { modal.classList.remove('opacity-0'); modalInner.classList.remove('scale-95'); modalInner.classList.add('scale-100'); }, 10);
             loadPartiesDropdown(); 
         }
 
         function closeTransactionModal() {
-            modal.classList.add('opacity-0');
-            modalInner.classList.remove('scale-100');
-            modalInner.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.getElementById('transaction-form').reset();
-                document.getElementById('transaction_date').valueAsDate = new Date();
-                document.getElementById('form-alert').classList.add('hidden');
-            }, 300);
+            modal.classList.add('opacity-0'); modalInner.classList.remove('scale-100'); modalInner.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); document.getElementById('transaction-form').reset(); document.getElementById('transaction_date').valueAsDate = new Date(); document.getElementById('form-alert').classList.add('hidden'); }, 300);
         }
 
         async function loadPartiesDropdown() {
-            const { data, error } = await supabaseClient
-                .from('parties')
-                .select('id, party_name')
-                .order('party_name', { ascending: true });
-            
+            const { data } = await supabaseClient.from('parties').select('id, party_name').order('party_name', { ascending: true });
             if (data) {
                 const select = document.getElementById('party_id');
                 select.innerHTML = '<option value="" disabled selected>Select a Party</option>';
-                data.forEach(party => {
-                    select.innerHTML += `<option value="${party.id}">${party.party_name}</option>`;
-                });
+                data.forEach(party => select.innerHTML += `<option value="${party.id}">${party.party_name}</option>`);
             }
         }
 
         async function fetchTransactions() {
-            const { data, error } = await supabaseClient
-                .from('transactions')
-                .select('*, parties(party_name)')
-                .order('transaction_date', { ascending: false })
-                .order('created_at', { ascending: false });
+            const { data, error } = await supabaseClient.from('transactions').select('*, parties(party_name)').order('transaction_date', { ascending: false }).order('created_at', { ascending: false });
             
+            if (error) {
+                document.getElementById('transactions-table-body').innerHTML = `<tr><td colspan="6" class="text-center py-10 text-red-500">Error loading transactions</td></tr>`;
+                return;
+            }
+            
+            allTransactions = data || [];
+            filterTransactions(); // Automatically filter based on date picker
+        }
+
+        function clearFilter() {
+            document.getElementById('date-filter').value = '';
+            filterTransactions();
+        }
+
+        function filterTransactions() {
+            const filterDate = document.getElementById('date-filter').value;
             const tbody = document.getElementById('transactions-table-body');
             tbody.innerHTML = ''; 
+            
+            let filteredData = allTransactions;
+            
+            if(filterDate) {
+                filteredData = allTransactions.filter(trx => trx.transaction_date === filterDate);
+                document.getElementById('print-date-label').innerText = `Date: ${new Date(filterDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}`;
+            } else {
+                document.getElementById('print-date-label').innerText = `Date: All Records`;
+            }
+
+            if(filteredData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-500 font-medium">No transactions found for this date.</td></tr>`;
+                return;
+            }
+
+            filteredData.forEach(trx => {
+                const partyName = trx.parties ? trx.parties.party_name : 'Unknown Party';
+                const formattedDate = new Date(trx.transaction_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                
+                let debitAmount = '-'; let creditAmount = '-';
+                if(trx.transaction_type === 'Debit') debitAmount = `<span class="text-red-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                else creditAmount = `<span class="text-emerald-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-6 py-4 font-medium text-slate-600">${formattedDate}</td>
+                        <td class="px-6 py-4 font-bold text-slate-800">${partyName}</td>
+                        <td class="px-6 py-4 text-slate-600 text-sm">${trx.description || '-'}</td>
+                        <td class="px-6 py-4 text-right bg-red-50/30">${debitAmount}</td>
+                        <td class="px-6 py-4 text-right bg-emerald-50/30">${creditAmount}</td>
+                        <td class="px-6 py-4 text-center no-print">
+                            <button onclick="deleteTransaction(${trx.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        async function saveTransaction(e) {
+            e.preventDefault();
+            const form = document.getElementById('transaction-form');
+            if(!form.checkValidity()) { form.reportValidity(); return; }
+
+            const btn = document.getElementById('save-btn');
+            const spinner = document.getElementById('save-spinner');
+            const alertBox = document.getElementById('form-alert');
+
+            btn.disabled = true; spinner.classList.remove('hidden'); alertBox.classList.add('hidden');
+            
+            const newTrx = {
+                party_id: document.getElementById('party_id').value,
+                transaction_type: document.getElementById('transaction_type').value,
+                amount: parseFloat(document.getElementById('amount').value),
+                transaction_date: document.getElementById('transaction_date').value,
+                description: document.getElementById('description').value
+            };
+
+            const { error } = await supabaseClient.from('transactions').insert([newTrx]);
+
+            btn.disabled = false; spinner.classList.add('hidden');
 
             if (error) {
-                tbody.innerHTML = `<tr>
+                alertBox.textContent = "Error saving data: " + error.message;
+                alertBox.className = "p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700 border border-red-200 mt-4 block";
+            } else {
+                closeTransactionModal();
+                fetchTransactions(); 
+            }
+        }
+
+        async function deleteTransaction(id) {
+            if(confirm("Are you sure you want to delete this transaction record?")) {
+                const { error } = await supabaseClient.from('transactions').delete().eq('id', id);
+                if(error) alert("Error deleting transaction: " + error.message);
+                else fetchTransactions(); 
+            }
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        fetchTransactions();
+    </script>
+</body>
+</html>
