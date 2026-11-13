@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking & Cash - RM Enterprise</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { 
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 900: '#0c4a6e' },
+                        sidebar: '#ffffff',
+                        background: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Premium Sidebar -->
+    <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
+        <div class="h-20 flex items-center px-6 border-b border-slate-100">
+            <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-[17px] font-bold text-slate-900 tracking-tight leading-tight">RM Enterprise</span>
+                <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Agency RL-1348</span>
+            </div>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
+            <div class="space-y-1.5">
+                <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                    <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+            </div>
+
+            <div>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
+                <div class="space-y-1">
+                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Agents & Clients
+                    </a>
+                    <a href="transactions.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Transactions Ledger
+                    </a>
+                    <a href="banking.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                        <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        Banking & Accounts
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 relative">
+        <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Banking & Accounts</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Manage bank balances, deposits, and withdrawals</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3 cursor-pointer group">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
+                        <span id="user-initial">RA</span>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                <h3 class="text-lg font-bold text-slate-800">Your Accounts</h3>
+                <div class="flex gap-3 w-full md:w-auto">
+                    <button onclick="openBankModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-5 py-2.5 rounded-xl font-semibold shadow-sm transition-all active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        Add Bank
+                    </button>
+                    <button onclick="openTrxModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        Deposit / Withdraw
+                    </button>
+                </div>
+            </div>
+
+            <!-- Accounts Grid -->
+            <div id="accounts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <!-- Data will be loaded here -->
+                <div class="col-span-3 text-center py-10 text-slate-500">
+                    <svg class="animate-spin h-8 w-8 mb-4 text-brand-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    Loading bank accounts...
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 mb-4">Recent Bank Transactions</h3>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Date</th>
+                                <th class="px-6 py-4 font-semibold">Bank Account</th>
+                                <th class="px-6 py-4 font-semibold">Type</th>
+                                <th class="px-6 py-4 font-semibold">Description</th>
+                                <th class="px-6 py-4 font-semibold text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bank-trx-body" class="divide-y divide-slate-100 text-sm">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal 1: Add Bank Account -->
+    <div id="add-bank-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Add New Bank Account</h3>
+                <button onclick="closeBankModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="bank-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Bank Name (e.g. Islami Bank) <span class="text-red-500">*</span></label>
+                        <input type="text" id="bank_name" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Account Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="account_name" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Account Number <span class="text-red-500">*</span></label>
+                        <input type="text" id="account_number" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Opening Balance (৳)</label>
+                        <input type="number" id="bank_opening_balance" value="0" step="0.01" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 font-medium">
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeBankModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/50 rounded-xl">Cancel</button>
+                <button onclick="saveBankAccount(event)" class="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm">Save Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Deposit / Withdraw Transaction -->
+    <div id="trx-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Deposit / Withdraw Funds</h3>
+                <button onclick="closeTrxModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="trx-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Select Bank Account <span class="text-red-500">*</span></label>
+                        <select id="account_id" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                            <option value="" disabled selected>Loading...</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Transaction Type <span class="text-red-500">*</span></label>
+                            <select id="trx_type" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                                <option value="" disabled selected>Select Type</option>
+                                <option value="Deposit" class="text-emerald-600 font-bold">Deposit (Cash In)</option>
+                                <option value="Withdraw" class="text-red-600 font-bold">Withdraw (Cash Out)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Date <span class="text-red-500">*</span></label>
+                            <input type="date" id="trx_date" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Amount (৳) <span class="text-red-500">*</span></label>
+                        <input type="number" id="trx_amount" required step="0.01" min="1" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 font-bold text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Description</label>
+                        <input type="text" id="trx_description" placeholder="e.g. Withdrawn for petty cash..." class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeTrxModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/50 rounded-xl">Cancel</button>
+                <button onclick="saveBankTransaction(event)" class="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm">Save Transaction</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10anpneGtmcW10aWZndGRyYmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM4MTMwNDEsImV4cCI6MjEwOTM4OTA0MX0.3W3RxgtzGMJgssrjx18-Z96SkxtD7ZNGqnfhJt9aRiE';
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Modals Toggle Logic
+        function openBankModal() {
+            document.getElementById('add-bank-modal').classList.remove('hidden');
+            setTimeout(() => document.getElementById('add-bank-modal').classList.remove('opacity-0'), 10);
+        }
+        function closeBankModal() {
+            document.getElementById('add-bank-modal').classList.add('opacity-0');
+            setTimeout(() => {
+                document.getElementById('add-bank-modal').classList.add('hidden');
+                document.getElementById('bank-form').reset();
+            }, 300);
+        }
+
+        function openTrxModal() {
+            document.getElementById('trx-modal').classList.remove('hidden');
+            setTimeout(() => document.getElementById('trx-modal').classList.remove('opacity-0'), 10);
+            document.getElementById('trx_date').valueAsDate = new Date();
+        }
+        function closeTrxModal() {
+            document.getElementById('trx-modal').classList.add('opacity-0');
+            setTimeout(() => {
+                document.getElementById('trx-modal').classList.add('hidden');
+                document.getElementById('trx-form').reset();
+            }, 300);
+        }
+
+        // Fetch & Render
+        async function fetchBankingData() {
+            // Get Accounts
+            const { data: accounts, error: accError } = await supabaseClient.from('bank_accounts').select('*');
+            // Get Transactions
+            const { data: transactions, error: trxError } = await supabaseClient.from('bank_transactions').select('*, bank_accounts(bank_name, account_number)').order('transaction_date', { ascending: false }).order('created_at', { ascending: false });
+
+            const grid = document.getElementById('accounts-grid');
+            const selectDropdown = document.getElementById('account_id');
+            const trxBody = document.getElementById('bank-trx-body');
+
+            if (accError || trxError) return alert("Error loading data!");
+
+            // Calculate Balances & Render Cards
+            grid.innerHTML = '';
+            selectDropdown.innerHTML = '<option value="" disabled selected>Select an account</option>';
+
+            if (!accounts || accounts.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-6 text-slate-500 bg-white rounded-xl border border-dashed border-slate-300">No bank accounts added yet.</div>`;
+            } else {
+                accounts.forEach(acc => {
+                    // Populate Dropdown
+                    selectDropdown.innerHTML += `<option value="${acc.id}">${acc.bank_name} (${acc.account_number})</option>`;
+
+                    // Calculate Balance: Opening + Deposits - Withdrawals
+                    const accTrx = transactions.filter(t => t.account_id == acc.id);
+                    let deposits = 0;
+                    let withdrawals = 0;
+                    accTrx.forEach(t => {
+                        if (t.transaction_type === 'Deposit') deposits += Number(t.amount);
+                        if (t.transaction_type === 'Withdraw') withdrawals += Number(t.amount);
+                    });
+                    const currentBalance = Number(acc.opening_balance || 0) + deposits - withdrawals;
+
+                    // Build Card
+                    grid.innerHTML += `
+                        <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-5">
+                                <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="inline-block px-2.5 py-1 bg-brand-50 text-brand-700 text-xs font-bold rounded-lg mb-3">Active Account</span>
+                                <h4 class="text-xl font-bold text-slate-800">${acc.bank_name}</h4>
+                                <p class="text-sm text-slate-500 mt-1">${acc.account_name}</p>
+                                <p class="text-sm font-mono text-slate-600 mt-1 bg-slate-50 px-2 py-1 rounded inline-block border border-slate-100">A/C: ${acc.account_number}</p>
+                            </div>
+                            <div class="mt-5 pt-4 border-t border-slate-100">
+                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Available Balance</p>
+                                <h3 class="text-2xl font-extrabold text-slate-800">৳ ${currentBalance.toLocaleString()}</h3>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            // Render Transactions Table
+            trxBody.innerHTML = '';
+            if (!transactions || transactions.length === 0) {
+                trxBody.innerHTML = `<tr><td colspan="5" class="text-center py-10 text-slate-500 font-medium">No transactions recorded yet.</td></tr>`;
+            } else {
+                transactions.forEach(trx => {
+                    const date = new Date(trx.transaction_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                    const bankInfo = trx.bank_accounts ? `${trx.bank_accounts.bank_name} (${trx.bank_accounts.account_number.slice(-4)})` : 'Unknown';
+                    
+                    let typeBadge, amountHtml;
+                    if(trx.transaction_type === 'Deposit') {
+                        typeBadge = '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100">Deposit In</span>';
+                        amountHtml = `<span class="font-bold text-emerald-600">+ ৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                    } else {
+                        typeBadge = '<span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-50 text-red-600 border border-red-100">Withdraw Out</span>';
+                        amountHtml = `<span class="font-bold text-red-600">- ৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                    }
+
+                    trxBody.innerHTML += `
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="px-6 py-4 font-medium text-slate-600">${date}</td>
+                            <td class="px-6 py-4 font-bold text-slate-800">${bankInfo}</td>
+                            <td class="px-6 py-4">${typeBadge}</td>
+                            <td class="px-6 py-4 text-slate-600 text-sm">${trx.description || '-'}</td>
+                            <td class="px-6 py-4 text-right bg-slate-50/30">${amountHtml}</td>
+                        </tr>
+                    `;
+                });
+            }
+        }
+
+        // Save New Bank Account
+        async function saveBankAccount(e) {
+            e.preventDefault();
+            const form = document.getElementById('bank-form');
+            if(!form.checkValidity()) { form.reportValidity(); return; }
+
+            const newAcc = {
+                bank_name: document.getElementById('bank_name').value,
+                account_name: document.getElementById('account_name').value,
+                account_number: document.getElementById('account_number').value,
+                opening_balance: parseFloat(document.getElementById('bank_opening_balance').value) || 0
+            };
+
+            const { error } = await supabaseClient.from('bank_accounts').insert([newAcc]);
+            if (error) alert("Error saving account: " + error.message);
+            else {
+                closeBankModal();
+                fetchBankingData();
+            }
+        }
+
+        // Save Deposit/Withdraw
+        async function saveBankTransaction(e) {
+            e.preventDefault();
+            const form = document.getElementById('trx-form');
+            if(!form.checkValidity()) { form.reportValidity(); return; }
+
+            const newTrx = {
+                account_id: document.getElementById('account_id').value,
+                transaction_type: document.getElementById('trx_type').value,
+                transaction_date: document.getElementById('trx_date').value,
+                amount: parseFloat(document.getElementById('trx_amount').value),
+                description: document.getElementById('trx_description').value
+            };
+
+            const { error } = await supabaseClient.from('bank_transactions').insert([newTrx]);
+            if (error) alert("Error saving transaction: " + error.message);
+            else {
+                closeTrxModal();
+                fetchBankingData();
+            }
+        }
+
+        // Init
+        fetchBankingData();
+    </script>
+</body>
+</html>
