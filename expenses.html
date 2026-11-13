@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Expenses - RM Enterprise</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { 
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 900: '#0c4a6e' },
+                        sidebar: '#ffffff',
+                        background: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Premium Sidebar -->
+    <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
+        <div class="h-20 flex items-center px-6 border-b border-slate-100">
+            <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-[17px] font-bold text-slate-900 tracking-tight leading-tight">RM Enterprise</span>
+                <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Agency RL-1348</span>
+            </div>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
+            <div class="space-y-1.5">
+                <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                    <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+            </div>
+
+            <div>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
+                <div class="space-y-1">
+                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Agents & Clients
+                    </a>
+                    <a href="transactions.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Transactions Ledger
+                    </a>
+                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        Banking & Accounts
+                    </a>
+                    <a href="expenses.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                        <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        Daily Expenses
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 relative">
+        <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Daily Expenses (Petty Cash)</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Track utility bills, entertainment, and office costs</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3 cursor-pointer group">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
+                        <span id="user-initial">RA</span>
+                    </div>
+                    <div class="hidden md:block text-right">
+                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <div class="bg-white rounded-2xl border border-slate-100 p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-4 w-full md:w-auto min-w-[250px]">
+                    <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">Total Expense (This Month)</p>
+                        <h3 id="total-expense" class="text-2xl font-extrabold text-orange-600">৳ 0</h3>
+                    </div>
+                </div>
+                
+                <button onclick="openExpenseModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Add Expense
+                </button>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Date</th>
+                                <th class="px-6 py-4 font-semibold">Expense Category</th>
+                                <th class="px-6 py-4 font-semibold">Description / Note</th>
+                                <th class="px-6 py-4 font-semibold text-right">Amount</th>
+                                <th class="px-6 py-4 font-semibold text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenses-body" class="divide-y divide-slate-100 text-sm">
+                            <tr>
+                                <td colspan="5" class="text-center py-10 text-slate-500">
+                                    <svg class="animate-spin h-8 w-8 mb-4 text-brand-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                    Loading expenses...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Add Expense -->
+    <div id="expense-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Add Petty Cash Expense</h3>
+                <button onclick="closeExpenseModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="expense-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Date <span class="text-red-500">*</span></label>
+                        <input type="date" id="expense_date" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Expense Category <span class="text-red-500">*</span></label>
+                        <select id="expense_category" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="Entertainment (Tea/Snacks)">Entertainment (Tea, Coffee, Snacks)</option>
+                            <option value="Transport / Conveyance">Transport / Conveyance (যাতায়াত)</option>
+                            <option value="Internet / Broadband">Internet / Broadband Bill</option>
+                            <option value="Mobile Bill / Flexiload">Mobile Bill / Flexiload</option>
+                            <option value="Utility Bill (Water/Gas/Electricity)">Utility Bill (Water, Gas, Electricity)</option>
+                            <option value="Office Rent">Office Rent</option>
+                            <option value="Stationery / Printing">Stationery / Printing</option>
+                            <option value="Others">Others / Miscellaneous</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Amount (৳) <span class="text-red-500">*</span></label>
+                        <input type="number" id="expense_amount" required step="0.01" min="1" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 font-bold text-lg text-orange-600">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Description (Optional)</label>
+                        <input type="text" id="expense_description" placeholder="e.g. Bkash sent to Robi, Biscuits..." class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeExpenseModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/50 rounded-xl">Cancel</button>
+                <button onclick="saveExpense(event)" class="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm">Save Expense</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10anpneGtmcW10aWZndGRyYmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM4MTMwNDEsImV4cCI6MjEwOTM4OTA0MX0.3W3RxgtzGMJgssrjx18-Z96SkxtD7ZNGqnfhJt9aRiE';
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        function openExpenseModal() {
+            document.getElementById('expense-modal').classList.remove('hidden');
+            setTimeout(() => document.getElementById('expense-modal').classList.remove('opacity-0'), 10);
+            document.getElementById('expense_date').valueAsDate = new Date();
+        }
+
+        function closeExpenseModal() {
+            document.getElementById('expense-modal').classList.add('opacity-0');
+            setTimeout(() => {
+                document.getElementById('expense-modal').classList.add('hidden');
+                document.getElementById('expense-form').reset();
+            }, 300);
+        }
+
+        async function fetchExpenses() {
+            const { data, error } = await supabaseClient
+                .from('expenses')
+                .select('*')
+                .order('expense_date', { ascending: false })
+                .order('created_at', { ascending: false });
+
+            const tbody = document.getElementById('expenses-body');
+            tbody.innerHTML = '';
+
+            if (error) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-red-500">Error loading expenses</td></tr>`;
+                return;
+            }
+
+            if (!data || data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-10 text-slate-500 font-medium">No expenses recorded yet.</td></tr>`;
+                document.getElementById('total-expense').innerText = "৳ 0";
+                return;
+            }
+
+            // Calculate current month total
+            let currentMonthTotal = 0;
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+
+            data.forEach(exp => {
+                // Table Row rendering
+                const expDate = new Date(exp.expense_date);
+                const formattedDate = expDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                
+                // Add to total if it's in the current month
+                if(expDate.getMonth() === currentMonth && expDate.getFullYear() === currentYear) {
+                    currentMonthTotal += Number(exp.amount);
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50/50 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-slate-600">${formattedDate}</td>
+                    <td class="px-6 py-4 font-bold text-slate-800">
+                        <span class="px-2.5 py-1 rounded-md text-xs bg-slate-100 border border-slate-200">${exp.expense_category}</span>
+                    </td>
+                    <td class="px-6 py-4 text-slate-600 text-sm">${exp.description || '-'}</td>
+                    <td class="px-6 py-4 text-right">
+                        <span class="font-bold text-orange-600">৳ ${Number(exp.amount).toLocaleString()}</span>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="deleteExpense('${exp.id}')" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('total-expense').innerText = `৳ ${currentMonthTotal.toLocaleString()}`;
+        }
+
+        async function saveExpense(e) {
+            e.preventDefault();
+            const form = document.getElementById('expense-form');
+            if(!form.checkValidity()) { form.reportValidity(); return; }
+
+            const newExpense = {
+                expense_date: document.getElementById('expense_date').value,
+                expense_category: document.getElementById('expense_category').value,
+                amount: parseFloat(document.getElementById('expense_amount').value),
+                description: document.getElementById('expense_description').value
+            };
+
+            const { error } = await supabaseClient.from('expenses').insert([newExpense]);
+            
+            if (error) {
+                alert("Error saving expense: " + error.message);
+            } else {
+                closeExpenseModal();
+                fetchExpenses();
+            }
+        }
+
+        async function deleteExpense(id) {
+            if(confirm("Are you sure you want to delete this expense record?")) {
+                const { error } = await supabaseClient.from('expenses').delete().eq('id', id);
+                if(error) alert("Error deleting expense: " + error.message);
+                else fetchExpenses();
+            }
+        }
+
+        fetchExpenses();
+    </script>
+</body>
+</html>
