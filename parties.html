@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parties & Agents - RM Enterprise</title>
+    <title>Dashboard - RM Enterprise</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,9 +39,10 @@
         </div>
         
         <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
+            <!-- Dashboard Menu (Active) -->
             <div class="space-y-1.5">
-                <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                    <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <a href="dashboard.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                    <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                     Dashboard
                 </a>
             </div>
@@ -49,13 +50,21 @@
             <div>
                 <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
                 <div class="space-y-1">
-                    <a href="parties.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
-                        <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         Agents & Clients
                     </a>
                     <a href="transactions.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
                         <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         Transactions Ledger
+                    </a>
+                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        Banking & Accounts
+                    </a>
+                    <a href="expenses.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        Daily Expenses
                     </a>
                 </div>
             </div>
@@ -65,8 +74,8 @@
     <div class="flex-1 flex flex-col min-w-0 relative">
         <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
             <div>
-                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Parties Management</h2>
-                <p class="text-sm text-slate-500 font-medium mt-0.5">Manage your Agents, Clients, and Corporate Partners</p>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">System Dashboard</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Overview of your business finances and parties</p>
             </div>
             
             <div class="flex items-center gap-6">
@@ -82,39 +91,63 @@
         </header>
 
         <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <div class="relative w-full md:w-96">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     </div>
-                    <input type="text" id="search-input" onkeyup="searchParties()" class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm shadow-sm" placeholder="Search party by name, phone or type...">
+                    <div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Total Parties</p>
+                        <h3 id="total-parties" class="text-3xl font-extrabold text-slate-800">...</h3>
+                    </div>
                 </div>
-                
-                <button onclick="openModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    Add New Party
-                </button>
+
+                <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Market Due (পাওনা)</p>
+                        <h3 id="total-due" class="text-3xl font-extrabold text-red-600">৳ 0</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Total Advance (জমা)</p>
+                        <h3 id="total-advance" class="text-3xl font-extrabold text-emerald-600">৳ 0</h3>
+                    </div>
+                </div>
             </div>
 
+            <!-- Recent Transactions Table -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
+                <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="text-lg font-bold text-slate-800">Recent Transactions</h3>
+                    <a href="transactions.html" class="text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors">View All &rarr;</a>
+                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Date</th>
                                 <th class="px-6 py-4 font-semibold">Party Name</th>
-                                <th class="px-6 py-4 font-semibold">Type</th>
-                                <th class="px-6 py-4 font-semibold">Contact Info</th>
-                                <th class="px-6 py-4 font-semibold text-right">Opening Balance</th>
-                                <th class="px-6 py-4 font-semibold text-right">Current Balance</th>
-                                <th class="px-6 py-4 font-semibold text-center">Action</th>
+                                <th class="px-6 py-4 font-semibold">Description</th>
+                                <th class="px-6 py-4 font-semibold text-right">Debit (Bill)</th>
+                                <th class="px-6 py-4 font-semibold text-right">Credit (Received)</th>
                             </tr>
                         </thead>
-                        <tbody id="parties-table-body" class="divide-y divide-slate-100 text-sm">
+                        <tbody id="recent-transactions-body" class="divide-y divide-slate-100 text-sm">
                             <tr>
-                                <td colspan="6" class="text-center py-10">
+                                <td colspan="5" class="text-center py-10">
                                     <div class="flex flex-col items-center justify-center text-slate-400">
                                         <svg class="animate-spin h-8 w-8 mb-4 text-brand-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                                        <p>Loading parties & calculating balances...</p>
+                                        <p>Calculating dashboard data...</p>
                                     </div>
                                 </td>
                             </tr>
@@ -122,72 +155,8 @@
                     </table>
                 </div>
             </div>
-        </main>
-    </div>
-
-    <!-- Modal Overlay -->
-    <div id="add-party-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col max-h-[90vh]">
             
-            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                <h3 id="modal-title" class="text-lg font-bold text-slate-800">Add New Party</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 bg-white hover:bg-slate-100 rounded-full p-1.5 transition-colors border border-slate-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-
-            <div class="p-6 overflow-y-auto custom-scrollbar">
-                <form id="party-form" class="space-y-5">
-                    <input type="hidden" id="edit_party_id" value="">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="space-y-1.5 md:col-span-2">
-                            <label class="block text-sm font-semibold text-slate-700">Party / Company Name <span class="text-red-500">*</span></label>
-                            <input type="text" id="party_name" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
-                        </div>
-
-                        <div class="space-y-1.5">
-                            <label class="block text-sm font-semibold text-slate-700">Party Type <span class="text-red-500">*</span></label>
-                            <select id="party_type" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm text-slate-700">
-                                <option value="" disabled selected>Select Type</option>
-                                <option value="Agent">Agent (Sub-agent / Dalal)</option>
-                                <option value="Client">Client (Corporate / Direct)</option>
-                                <option value="Supplier">Supplier / Vendor</option>
-                            </select>
-                        </div>
-
-                        <div class="space-y-1.5">
-                            <label class="block text-sm font-semibold text-slate-700">Phone Number <span class="text-red-500">*</span></label>
-                            <input type="tel" id="phone" required class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
-                        </div>
-
-                        <div class="space-y-1.5">
-                            <label class="block text-sm font-semibold text-slate-700">Email Address</label>
-                            <input type="email" id="email" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm">
-                        </div>
-
-                        <div class="space-y-1.5">
-                            <label class="block text-sm font-semibold text-slate-700">Opening Balance (৳)</label>
-                            <input type="number" id="opening_balance" value="0" step="0.01" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm font-medium">
-                        </div>
-
-                        <div class="space-y-1.5 md:col-span-2">
-                            <label class="block text-sm font-semibold text-slate-700">Full Address</label>
-                            <textarea id="address" rows="2" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all sm:text-sm"></textarea>
-                        </div>
-                    </div>
-                    <div id="form-alert" class="hidden p-3 rounded-xl text-sm font-medium"></div>
-                </form>
-            </div>
-
-            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
-                <button onclick="closeModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 rounded-xl transition-colors">Cancel</button>
-                <button onclick="saveParty(event)" id="save-btn" class="flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm transition-all active:scale-95">
-                    <span id="save-btn-text">Save Party</span>
-                    <svg id="save-spinner" class="animate-spin hidden h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                </button>
-            </div>
-        </div>
+        </main>
     </div>
 
     <!-- Script Logic -->
@@ -197,244 +166,92 @@
         
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        const modal = document.getElementById('add-party-modal');
-        const modalInner = modal.querySelector('div');
+        async function loadDashboardData() {
+            const { data: partiesData, error: partiesError } = await supabaseClient.from('parties').select('*');
+            const { data: trxData, error: trxError } = await supabaseClient.from('transactions').select('party_id, transaction_type, amount');
 
-        function openModal() {
-            document.getElementById('modal-title').textContent = "Add New Party";
-            document.getElementById('save-btn-text').textContent = "Save Party";
-            document.getElementById('edit_party_id').value = ""; 
-            document.getElementById('party-form').reset(); 
-
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalInner.classList.remove('scale-95');
-                modalInner.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            modalInner.classList.remove('scale-100');
-            modalInner.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.getElementById('party-form').reset();
-                document.getElementById('form-alert').classList.add('hidden');
-            }, 300);
-        }
-
-        let allParties = [];
-        
-        // পার্টি এবং ট্রানজ্যাকশন দুটো একসাথে ফেচ করা
-        async function fetchParties() {
-            // ১. সব পার্টি আনা
-            const { data: partiesData, error: partiesError } = await supabaseClient
-                .from('parties')
-                .select('*')
-                .order('created_at', { ascending: false });
-            
-            // ২. সব ট্রানজ্যাকশন আনা (হিসাব করার জন্য)
-            const { data: trxData, error: trxError } = await supabaseClient
-                .from('transactions')
-                .select('party_id, transaction_type, amount');
-
-            if (partiesError) {
-                console.error("Error fetching parties: ", partiesError);
+            if (partiesError || trxError) {
+                console.error("Error loading dashboard data.");
                 return;
             }
-            
-            let rawParties = partiesData || [];
+
+            let totalParties = partiesData ? partiesData.length : 0;
+            let totalAdvance = 0; 
+            let totalDue = 0;     
+
             const allTrx = trxData || [];
 
-            // ৩. কারেন্ট ব্যালেন্স যোগ-বিয়োগ করা
-            allParties = rawParties.map(party => {
-                const partyTrx = allTrx.filter(t => t.party_id == party.id);
-                let totalCredit = 0;
-                let totalDebit = 0;
+            if (partiesData) {
+                partiesData.forEach(party => {
+                    const partyTrx = allTrx.filter(t => t.party_id == party.id);
+                    let credit = 0;
+                    let debit = 0;
 
-                partyTrx.forEach(t => {
-                    if (t.transaction_type === 'Credit') totalCredit += Number(t.amount);
-                    if (t.transaction_type === 'Debit') totalDebit += Number(t.amount);
+                    partyTrx.forEach(t => {
+                        if (t.transaction_type === 'Credit') credit += Number(t.amount);
+                        if (t.transaction_type === 'Debit') debit += Number(t.amount);
+                    });
+
+                    const currentBalance = Number(party.opening_balance || 0) + credit - debit;
+                    
+                    if (currentBalance > 0) {
+                        totalAdvance += currentBalance;
+                    } else if (currentBalance < 0) {
+                        totalDue += Math.abs(currentBalance);
+                    }
                 });
+            }
 
-                // মূল সূত্র: Opening Balance + Credit(জমা) - Debit(কাটা/বিল)
-                const currentBalance = Number(party.opening_balance || 0) + totalCredit - totalDebit;
-                
-                return { ...party, current_balance: currentBalance };
-            });
+            document.getElementById('total-parties').innerText = totalParties;
+            document.getElementById('total-advance').innerText = `৳ ${totalAdvance.toLocaleString()}`;
+            document.getElementById('total-due').innerText = `৳ ${totalDue.toLocaleString()}`;
 
-            renderParties(allParties);
+            const { data: recentTrx } = await supabaseClient
+                .from('transactions')
+                .select('*, parties(party_name)')
+                .order('transaction_date', { ascending: false })
+                .order('created_at', { ascending: false })
+                .limit(5);
+            
+            renderRecentTransactions(recentTrx || []);
         }
 
-        function renderParties(parties) {
-            const tbody = document.getElementById('parties-table-body');
+        function renderRecentTransactions(transactions) {
+            const tbody = document.getElementById('recent-transactions-body');
             tbody.innerHTML = ''; 
-            
-            if(parties.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-500 font-medium">No parties found. Click 'Add New Party' to create one.</td></tr>`;
+
+            if(transactions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-slate-500 font-medium">No transactions recorded yet.</td></tr>`;
                 return;
             }
 
-            parties.forEach(party => {
-                const initials = party.party_name ? party.party_name.substring(0, 2).toUpperCase() : 'PA';
-                let typeBadge = '';
-                if(party.party_type === 'Agent') typeBadge = 'bg-indigo-50 text-indigo-600 border-indigo-100';
-                else if(party.party_type === 'Client') typeBadge = 'bg-emerald-50 text-emerald-600 border-emerald-100';
-                else typeBadge = 'bg-amber-50 text-amber-600 border-amber-100';
-
-                // কারেন্ট ব্যালেন্সের রঙ এবং স্টাইল নির্ধারণ
-                const bal = party.current_balance;
-                const balText = bal >= 0 ? `৳ ${bal.toLocaleString()} Cr` : `৳ ${Math.abs(bal).toLocaleString()} Dr`;
-                const balColor = bal >= 0 ? 'text-emerald-600' : 'text-red-600';
+            transactions.forEach(trx => {
+                const partyName = trx.parties ? trx.parties.party_name : 'Unknown Party';
+                const formattedDate = new Date(trx.transaction_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                
+                let debitAmount = '-';
+                let creditAmount = '-';
+                
+                if(trx.transaction_type === 'Debit') {
+                    debitAmount = `<span class="text-red-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                } else {
+                    creditAmount = `<span class="text-emerald-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                }
 
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-slate-50/50 transition-colors';
                 tr.innerHTML = `
-                    <td class="px-6 py-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold shadow-sm">${initials}</div>
-                            <div>
-                                <p class="font-bold text-slate-800">${party.party_name}</p>
-                                <p class="text-xs text-slate-500">${party.address || 'N/A'}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4">
-                        <span class="px-2.5 py-1 rounded-md text-xs font-bold ${typeBadge} border">${party.party_type}</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        <p class="text-slate-700 font-medium">${party.phone}</p>
-                        <p class="text-xs text-slate-500">${party.email || 'No email provided'}</p>
-                    </td>
-                    <td class="px-6 py-4 text-right font-medium text-slate-600">৳ ${Number(party.opening_balance || 0).toLocaleString()}</td>
-                    <td class="px-6 py-4 text-right">
-                        <p class="font-bold ${balColor} bg-slate-50 px-3 py-1.5 rounded-lg inline-block border border-slate-100">${balText}</p>
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        <div class="flex items-center justify-center gap-2">
-                            <button onclick="editParty('${party.id}')" class="text-slate-400 hover:text-brand-600 transition-colors p-1.5 hover:bg-brand-50 rounded-lg" title="Edit">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-                            </button>
-                            <button onclick="deleteParty('${party.id}')" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                            </button>
-                        </div>
-                    </td>
+                    <td class="px-6 py-4 font-medium text-slate-600">${formattedDate}</td>
+                    <td class="px-6 py-4 font-bold text-slate-800">${partyName}</td>
+                    <td class="px-6 py-4 text-slate-600 text-sm truncate max-w-xs">${trx.description || '-'}</td>
+                    <td class="px-6 py-4 text-right bg-red-50/30">${debitAmount}</td>
+                    <td class="px-6 py-4 text-right bg-emerald-50/30">${creditAmount}</td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        function searchParties() {
-            const searchText = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allParties.filter(party => 
-                party.party_name.toLowerCase().includes(searchText) || 
-                party.phone.includes(searchText) || 
-                party.party_type.toLowerCase().includes(searchText)
-            );
-            renderParties(filtered);
-        }
-
-        function editParty(id) {
-            const party = allParties.find(p => p.id == id);
-            if(!party) return;
-
-            document.getElementById('edit_party_id').value = party.id;
-            document.getElementById('party_name').value = party.party_name;
-            document.getElementById('party_type').value = party.party_type;
-            document.getElementById('phone').value = party.phone;
-            document.getElementById('email').value = party.email || '';
-            document.getElementById('opening_balance').value = party.opening_balance || 0;
-            document.getElementById('address').value = party.address || '';
-
-            document.getElementById('modal-title').textContent = "Edit Party Details";
-            document.getElementById('save-btn-text').textContent = "Update Party";
-
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalInner.classList.remove('scale-95');
-                modalInner.classList.add('scale-100');
-            }, 10);
-        }
-
-        async function saveParty(e) {
-            e.preventDefault();
-            const form = document.getElementById('party-form');
-            if(!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-
-            const btn = document.getElementById('save-btn');
-            const spinner = document.getElementById('save-spinner');
-            const alertBox = document.getElementById('form-alert');
-            const editId = document.getElementById('edit_party_id').value;
-
-            btn.disabled = true;
-            spinner.classList.remove('hidden');
-            alertBox.classList.add('hidden');
-            
-            const partyData = {
-                party_name: document.getElementById('party_name').value,
-                party_type: document.getElementById('party_type').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                opening_balance: parseFloat(document.getElementById('opening_balance').value) || 0,
-                address: document.getElementById('address').value
-            };
-
-            let resultError = null;
-
-            if(editId) {
-                const { error } = await supabaseClient
-                    .from('parties')
-                    .update(partyData)
-                    .eq('id', editId);
-                resultError = error;
-            } else {
-                const { error } = await supabaseClient
-                    .from('parties')
-                    .insert([partyData]);
-                resultError = error;
-            }
-
-            btn.disabled = false;
-            spinner.classList.add('hidden');
-
-            if (resultError) {
-                alertBox.textContent = "Error saving data: " + resultError.message;
-                alertBox.className = "p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700 border border-red-200 mt-4 block";
-            } else {
-                closeModal();
-                fetchParties(); 
-                
-                const searchBox = document.getElementById('search-input');
-                const oldPlaceholder = searchBox.placeholder;
-                searchBox.placeholder = editId ? "Party updated successfully!" : "Party saved successfully!";
-                setTimeout(() => searchBox.placeholder = oldPlaceholder, 3000);
-            }
-        }
-
-        async function deleteParty(id) {
-            if(confirm("Are you sure you want to delete this party?")) {
-                const { error } = await supabaseClient
-                    .from('parties')
-                    .delete()
-                    .eq('id', id);
-                
-                if(error) {
-                    alert("Error deleting party: " + error.message);
-                } else {
-                    alert("Party deleted successfully!");
-                    fetchParties(); 
-                }
-            }
-        }
-
-        fetchParties();
+        loadDashboardData();
     </script>
 </body>
 </html>

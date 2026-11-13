@@ -58,6 +58,14 @@
                         <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         Transactions Ledger
                     </a>
+                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        Banking & Accounts
+                    </a>
+                    <a href="expenses.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        Daily Expenses
+                    </a>
                 </div>
             </div>
         </nav>
@@ -86,8 +94,6 @@
             
             <!-- Summary Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                
-                <!-- Total Parties Card -->
                 <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
                     <div class="w-14 h-14 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
@@ -98,7 +104,6 @@
                     </div>
                 </div>
 
-                <!-- Total Receivables (Due) Card -->
                 <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
                     <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -109,7 +114,6 @@
                     </div>
                 </div>
 
-                <!-- Total Advance Card -->
                 <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
                     <div class="w-14 h-14 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -119,7 +123,6 @@
                         <h3 id="total-advance" class="text-3xl font-extrabold text-emerald-600">৳ 0</h3>
                     </div>
                 </div>
-
             </div>
 
             <!-- Recent Transactions Table -->
@@ -164,7 +167,6 @@
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         async function loadDashboardData() {
-            // ১. ডাটাবেস থেকে সব পার্টি এবং ট্রানজ্যাকশন নিয়ে আসা
             const { data: partiesData, error: partiesError } = await supabaseClient.from('parties').select('*');
             const { data: trxData, error: trxError } = await supabaseClient.from('transactions').select('party_id, transaction_type, amount');
 
@@ -174,12 +176,11 @@
             }
 
             let totalParties = partiesData ? partiesData.length : 0;
-            let totalAdvance = 0; // Credit (জমা)
-            let totalDue = 0;     // Debit (বাকি/পাওনা)
+            let totalAdvance = 0; 
+            let totalDue = 0;     
 
             const allTrx = trxData || [];
 
-            // ২. হিসাব-নিকাশ করা (Current Balance লজিক)
             if (partiesData) {
                 partiesData.forEach(party => {
                     const partyTrx = allTrx.filter(t => t.party_id == party.id);
@@ -191,23 +192,20 @@
                         if (t.transaction_type === 'Debit') debit += Number(t.amount);
                     });
 
-                    // Opening + Credit - Debit
                     const currentBalance = Number(party.opening_balance || 0) + credit - debit;
                     
                     if (currentBalance > 0) {
                         totalAdvance += currentBalance;
                     } else if (currentBalance < 0) {
-                        totalDue += Math.abs(currentBalance); // মাইনাস চিহ্ন বাদ দিয়ে যোগ করা
+                        totalDue += Math.abs(currentBalance);
                     }
                 });
             }
 
-            // ৩. ড্যাশবোর্ড কার্ডগুলোতে ভ্যালু বসানো
             document.getElementById('total-parties').innerText = totalParties;
             document.getElementById('total-advance').innerText = `৳ ${totalAdvance.toLocaleString()}`;
             document.getElementById('total-due').innerText = `৳ ${totalDue.toLocaleString()}`;
 
-            // ৪. শেষ ৫টি ট্রানজ্যাকশন নিয়ে আসা
             const { data: recentTrx } = await supabaseClient
                 .from('transactions')
                 .select('*, parties(party_name)')
@@ -253,7 +251,6 @@
             });
         }
 
-        // পেজ লোড হওয়ার সাথে সাথেই ডাটা ক্যালকুলেশন শুরু
         loadDashboardData();
     </script>
 </body>

@@ -53,9 +53,18 @@
                         <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         Agents & Clients
                     </a>
+                    <!-- Transactions (Active) -->
                     <a href="transactions.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
                         <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         Transactions Ledger
+                    </a>
+                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        Banking & Accounts
+                    </a>
+                    <a href="expenses.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        Daily Expenses
                     </a>
                 </div>
             </div>
@@ -84,7 +93,6 @@
         <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                 <div class="relative w-full md:w-96">
-                    <!-- সার্চ অপশন -->
                 </div>
                 
                 <button onclick="openTransactionModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
@@ -192,7 +200,6 @@
         const modal = document.getElementById('transaction-modal');
         const modalInner = modal.querySelector('div');
 
-        // আজকের তারিখ অটোমেটিক সেট করা
         document.getElementById('transaction_date').valueAsDate = new Date();
 
         function openTransactionModal() {
@@ -202,7 +209,7 @@
                 modalInner.classList.remove('scale-95');
                 modalInner.classList.add('scale-100');
             }, 10);
-            loadPartiesDropdown(); // ফর্ম ওপেন হলে পার্টির নামগুলো লিস্টে আসবে
+            loadPartiesDropdown(); 
         }
 
         function closeTransactionModal() {
@@ -217,7 +224,6 @@
             }, 300);
         }
 
-        // পার্টি টেবিল থেকে নামগুলো এনে ড্রপডাউনে বসানো
         async function loadPartiesDropdown() {
             const { data, error } = await supabaseClient
                 .from('parties')
@@ -233,7 +239,6 @@
             }
         }
 
-        // লেনদেন ফেচ করে টেবিলে দেখানো
         async function fetchTransactions() {
             const { data, error } = await supabaseClient
                 .from('transactions')
@@ -245,103 +250,4 @@
             tbody.innerHTML = ''; 
 
             if (error) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-red-500">Error loading transactions</td></tr>`;
-                return;
-            }
-            
-            if(!data || data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-10 text-slate-500 font-medium">No transactions found. Click 'New Transaction' to record one.</td></tr>`;
-                return;
-            }
-
-            data.forEach(trx => {
-                const partyName = trx.parties ? trx.parties.party_name : 'Unknown Party';
-                const formattedDate = new Date(trx.transaction_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-                
-                let debitAmount = '-';
-                let creditAmount = '-';
-                
-                if(trx.transaction_type === 'Debit') {
-                    debitAmount = `<span class="text-red-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
-                } else {
-                    creditAmount = `<span class="text-emerald-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
-                }
-
-                const tr = document.createElement('tr');
-                tr.className = 'hover:bg-slate-50/50 transition-colors';
-                tr.innerHTML = `
-                    <td class="px-6 py-4 font-medium text-slate-600">${formattedDate}</td>
-                    <td class="px-6 py-4 font-bold text-slate-800">${partyName}</td>
-                    <td class="px-6 py-4 text-slate-600 text-sm">${trx.description || '-'}</td>
-                    <td class="px-6 py-4 text-right bg-red-50/30">${debitAmount}</td>
-                    <td class="px-6 py-4 text-right bg-emerald-50/30">${creditAmount}</td>
-                    <td class="px-6 py-4 text-center">
-                        <button onclick="deleteTransaction(${trx.id})" class="text-slate-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-lg" title="Delete">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // নতুন ট্রানজ্যাকশন সেভ করা
-        async function saveTransaction(e) {
-            e.preventDefault();
-            const form = document.getElementById('transaction-form');
-            if(!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-
-            const btn = document.getElementById('save-btn');
-            const spinner = document.getElementById('save-spinner');
-            const alertBox = document.getElementById('form-alert');
-
-            btn.disabled = true;
-            spinner.classList.remove('hidden');
-            alertBox.classList.add('hidden');
-            
-            const newTrx = {
-                party_id: document.getElementById('party_id').value,
-                transaction_type: document.getElementById('transaction_type').value,
-                amount: parseFloat(document.getElementById('amount').value),
-                transaction_date: document.getElementById('transaction_date').value,
-                description: document.getElementById('description').value
-            };
-
-            const { error } = await supabaseClient
-                .from('transactions')
-                .insert([newTrx]);
-
-            btn.disabled = false;
-            spinner.classList.add('hidden');
-
-            if (error) {
-                alertBox.textContent = "Error saving data: " + error.message;
-                alertBox.className = "p-3 rounded-xl text-sm font-medium bg-red-50 text-red-700 border border-red-200 mt-4 block";
-            } else {
-                closeTransactionModal();
-                fetchTransactions(); 
-            }
-        }
-
-        async function deleteTransaction(id) {
-            if(confirm("Are you sure you want to delete this transaction record?")) {
-                const { error } = await supabaseClient
-                    .from('transactions')
-                    .delete()
-                    .eq('id', id);
-                
-                if(error) {
-                    alert("Error deleting transaction: " + error.message);
-                } else {
-                    fetchTransactions(); 
-                }
-            }
-        }
-
-        fetchTransactions();
-    </script>
-</body>
-</html>
+                tbody.innerHTML = `<tr>
