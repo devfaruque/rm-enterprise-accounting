@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - RM Enterprise Accounting</title>
+    <title>Dashboard - RM Enterprise</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -21,18 +25,11 @@
             }
         }
     </script>
-    
-    <script>
-        //const token = localStorage.getItem('rm_token');
-        //if (!token) window.location.href = 'index.html';
-    </script>
 </head>
 <body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
 
     <!-- Premium Sidebar -->
     <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
-        
-        <!-- Logo Area -->
         <div class="h-20 flex items-center px-6 border-b border-slate-100">
             <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
             <div class="flex flex-col">
@@ -41,248 +38,114 @@
             </div>
         </div>
         
-        <!-- Navigation Menu -->
         <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
-            
-            <!-- General -->
+            <!-- Dashboard Menu (Active) -->
             <div class="space-y-1.5">
-                <a href="#" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
-                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <a href="dashboard.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md shadow-brand-500/20 transition-all">
+                    <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                     Dashboard
                 </a>
             </div>
 
-            <!-- Recruitment -->
-            <div>
-                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Recruitment</h3>
-                <div class="space-y-1">
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                        Workers Profile
-                    </a>
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        Visa Processing
-                    </a>
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        Flights & Tickets
-                    </a>
-                </div>
-            </div>
-
-            <!-- Accounting & Finance -->
             <div>
                 <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Accounts</h3>
                 <div class="space-y-1">
-                    
-                    <!-- এখানেই parties.html এর লিংক আপডেট করা হয়েছে -->
                     <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         Agents & Clients
                     </a>
-                    
-                    <!-- NEW: Daily Expenses Menu -->
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-rose-50 hover:text-rose-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path></svg>
-                        Daily Expenses
-                    </a>
-                    
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        Voucher Entry
-                    </a>
-                    <a href="#" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
-                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                        Ledgers / Accounts
+                    <a href="transactions.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                        <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-brand-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Transactions Ledger
                     </a>
                 </div>
             </div>
         </nav>
-        
     </aside>
 
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col min-w-0">
-        <!-- Top Header -->
+    <div class="flex-1 flex flex-col min-w-0 relative">
         <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
             <div>
-                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Overview</h2>
-                <p class="text-sm text-slate-500 font-medium mt-0.5">Welcome back to your dashboard</p>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">System Dashboard</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Overview of your business finances and parties</p>
             </div>
             
             <div class="flex items-center gap-6">
-                <button class="relative p-2 text-slate-400 hover:text-brand-600 transition-colors rounded-full hover:bg-slate-50">
-                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-white"></span>
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                </button>
-                <div class="h-8 w-px bg-slate-200"></div>
                 <div class="flex items-center gap-3 cursor-pointer group">
-                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm group-hover:shadow transition-all">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">
                         <span id="user-initial">RA</span>
                     </div>
                     <div class="hidden md:block text-right">
-                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight group-hover:text-brand-600 transition-colors">Loading...</p>
-                        <p class="text-xs font-medium text-slate-500">Super Admin</p>
+                        <p id="user-name-display" class="text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
                     </div>
-                    <button id="logout-btn" class="ml-2 p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors" title="Logout">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                    </button>
                 </div>
             </div>
         </header>
 
-        <!-- Page Content -->
         <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
             
-            <!-- SECTION 1: Recruitment Operations -->
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Operations Overview</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <!-- Workers Card -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-brand-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="relative z-10 flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-semibold text-slate-500 mb-2">Total Workers Processing</h3>
-                            <p class="text-3xl font-bold text-slate-800">124</p>
-                        </div>
-                        <div class="p-3.5 bg-brand-50 text-brand-600 rounded-xl shadow-inner"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                
+                <!-- Total Parties Card -->
+                <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Total Parties</p>
+                        <h3 id="total-parties" class="text-3xl font-extrabold text-slate-800">...</h3>
                     </div>
                 </div>
 
-                <!-- Visas Card -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-emerald-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="relative z-10 flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-semibold text-slate-500 mb-2">Active Visas Available</h3>
-                            <p class="text-3xl font-bold text-slate-800">45</p>
-                        </div>
-                        <div class="p-3.5 bg-emerald-50 text-emerald-600 rounded-xl shadow-inner"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+                <!-- Total Receivables (Due) Card -->
+                <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Market Due (পাওনা)</p>
+                        <h3 id="total-due" class="text-3xl font-extrabold text-red-600">৳ 0</h3>
                     </div>
                 </div>
 
-                <!-- Flights Card -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 bg-amber-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
-                    <div class="relative z-10 flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-semibold text-slate-500 mb-2">Upcoming Flights</h3>
-                            <p class="text-3xl font-bold text-slate-800">12</p>
-                        </div>
-                        <div class="p-3.5 bg-amber-50 text-amber-500 rounded-xl shadow-inner"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></div>
+                <!-- Total Advance Card -->
+                <div class="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex items-center gap-5">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Total Advance (জমা)</p>
+                        <h3 id="total-advance" class="text-3xl font-extrabold text-emerald-600">৳ 0</h3>
                     </div>
                 </div>
+
             </div>
 
-            <!-- SECTION 2: Financial Overview (NEW & DYNAMIC) -->
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Financial Overview</h3>
-                <a href="#" class="text-xs font-bold text-brand-600 hover:text-brand-700 bg-brand-50 px-3 py-1.5 rounded-full transition-colors">View All Ledgers &rarr;</a>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-                <!-- Today's Collection -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group">
-                    <div class="flex justify-between items-start mb-3">
-                        <div class="p-2.5 bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-100 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">Today</span>
-                    </div>
-                    <div>
-                        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Total Collection</h3>
-                        <p class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-slate-400 text-lg mr-1">৳</span>2,45,000</p>
-                    </div>
-                </div>
-
-                <!-- Today's Expense -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group">
-                    <div class="flex justify-between items-start mb-3">
-                        <div class="p-2.5 bg-rose-50 text-rose-600 rounded-lg group-hover:bg-rose-100 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path></svg>
-                        </div>
-                        <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded-md">Today</span>
-                    </div>
-                    <div>
-                        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Daily Expenses</h3>
-                        <p class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-slate-400 text-lg mr-1">৳</span>12,450</p>
-                    </div>
-                </div>
-
-                <!-- Cash in Hand -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group">
-                    <div class="flex justify-between items-start mb-3">
-                        <div class="p-2.5 bg-amber-50 text-amber-600 rounded-lg group-hover:bg-amber-100 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        </div>
-                        <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-md">Live Cash</span>
-                    </div>
-                    <div>
-                        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Cash In Hand</h3>
-                        <p class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-slate-400 text-lg mr-1">৳</span>8,54,200</p>
-                    </div>
-                </div>
-
-                <!-- Bank Balance -->
-                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group">
-                    <div class="flex justify-between items-start mb-3">
-                        <div class="p-2.5 bg-indigo-50 text-indigo-600 rounded-lg group-hover:bg-indigo-100 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                        </div>
-                        <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">All Banks</span>
-                    </div>
-                    <div>
-                        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Bank Balance</h3>
-                        <p class="text-2xl font-bold text-slate-800 tracking-tight"><span class="text-slate-400 text-lg mr-1">৳</span>45,20,000</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dynamic Table Section (Recent Activities) -->
+            <!-- Recent Transactions Table -->
             <div class="bg-white rounded-2xl border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] overflow-hidden">
-                <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-white">
-                    <h3 class="text-lg font-bold text-slate-800">Recent Applications & Status</h3>
-                    <button class="text-sm font-semibold text-brand-600 hover:text-brand-700">View All</button>
+                <div class="px-6 py-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="text-lg font-bold text-slate-800">Recent Transactions</h3>
+                    <a href="transactions.html" class="text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors">View All &rarr;</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-50/50 text-slate-500 text-xs uppercase tracking-wider">
-                                <th class="px-6 py-4 font-semibold">Candidate Name</th>
-                                <th class="px-6 py-4 font-semibold">Destination</th>
-                                <th class="px-6 py-4 font-semibold">Trade/Job</th>
-                                <th class="px-6 py-4 font-semibold">Status</th>
-                                <th class="px-6 py-4 font-semibold text-right">Action</th>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Date</th>
+                                <th class="px-6 py-4 font-semibold">Party Name</th>
+                                <th class="px-6 py-4 font-semibold">Description</th>
+                                <th class="px-6 py-4 font-semibold text-right">Debit (Bill)</th>
+                                <th class="px-6 py-4 font-semibold text-right">Credit (Received)</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100 text-sm">
-                            <tr class="hover:bg-slate-50/80 transition-colors">
-                                <td class="px-6 py-4 flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs">JH</div>
-                                    <span class="font-semibold text-slate-800">Jamal Hossain</span>
-                                </td>
-                                <td class="px-6 py-4 font-medium text-slate-600">Saudi Arabia</td>
-                                <td class="px-6 py-4 text-slate-500">Construction Worker</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200/50">Visa Pending</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="text-slate-400 hover:text-brand-600 transition-colors"><svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50/80 transition-colors">
-                                <td class="px-6 py-4 flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">KA</div>
-                                    <span class="font-semibold text-slate-800">Kamrul Alam</span>
-                                </td>
-                                <td class="px-6 py-4 font-medium text-slate-600">Malaysia</td>
-                                <td class="px-6 py-4 text-slate-500">Factory Operator</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700 border border-emerald-200/50">Flight Ready</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="text-slate-400 hover:text-brand-600 transition-colors"><svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button>
+                        <tbody id="recent-transactions-body" class="divide-y divide-slate-100 text-sm">
+                            <tr>
+                                <td colspan="5" class="text-center py-10">
+                                    <div class="flex flex-col items-center justify-center text-slate-400">
+                                        <svg class="animate-spin h-8 w-8 mb-4 text-brand-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                        <p>Calculating dashboard data...</p>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -290,34 +153,108 @@
                 </div>
             </div>
             
-            <div class="mt-8 text-center pb-4">
-                <p class="text-xs text-slate-400 font-medium">&copy; <span id="year"></span> RM Enterprise Accounting System. v1.0.0</p>
-            </div>
         </main>
     </div>
 
-    <!-- UI Logic Script -->
+    <!-- Script Logic -->
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10anpneGtmcW10aWZndGRyYmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM4MTMwNDEsImV4cCI6MjEwOTM4OTA0MX0.3W3RxgtzGMJgssrjx18-Z96SkxtD7ZNGqnfhJt9aRiE';
         
-        // Load User Data
-        const userStr = localStorage.getItem('rm_user');
-        if (userStr) {
-            const user = JSON.parse(userStr);
-            document.getElementById('user-name-display').textContent = user.full_name;
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        async function loadDashboardData() {
+            // ১. ডাটাবেস থেকে সব পার্টি এবং ট্রানজ্যাকশন নিয়ে আসা
+            const { data: partiesData, error: partiesError } = await supabaseClient.from('parties').select('*');
+            const { data: trxData, error: trxError } = await supabaseClient.from('transactions').select('party_id, transaction_type, amount');
+
+            if (partiesError || trxError) {
+                console.error("Error loading dashboard data.");
+                return;
+            }
+
+            let totalParties = partiesData ? partiesData.length : 0;
+            let totalAdvance = 0; // Credit (জমা)
+            let totalDue = 0;     // Debit (বাকি/পাওনা)
+
+            const allTrx = trxData || [];
+
+            // ২. হিসাব-নিকাশ করা (Current Balance লজিক)
+            if (partiesData) {
+                partiesData.forEach(party => {
+                    const partyTrx = allTrx.filter(t => t.party_id == party.id);
+                    let credit = 0;
+                    let debit = 0;
+
+                    partyTrx.forEach(t => {
+                        if (t.transaction_type === 'Credit') credit += Number(t.amount);
+                        if (t.transaction_type === 'Debit') debit += Number(t.amount);
+                    });
+
+                    // Opening + Credit - Debit
+                    const currentBalance = Number(party.opening_balance || 0) + credit - debit;
+                    
+                    if (currentBalance > 0) {
+                        totalAdvance += currentBalance;
+                    } else if (currentBalance < 0) {
+                        totalDue += Math.abs(currentBalance); // মাইনাস চিহ্ন বাদ দিয়ে যোগ করা
+                    }
+                });
+            }
+
+            // ৩. ড্যাশবোর্ড কার্ডগুলোতে ভ্যালু বসানো
+            document.getElementById('total-parties').innerText = totalParties;
+            document.getElementById('total-advance').innerText = `৳ ${totalAdvance.toLocaleString()}`;
+            document.getElementById('total-due').innerText = `৳ ${totalDue.toLocaleString()}`;
+
+            // ৪. শেষ ৫টি ট্রানজ্যাকশন নিয়ে আসা
+            const { data: recentTrx } = await supabaseClient
+                .from('transactions')
+                .select('*, parties(party_name)')
+                .order('transaction_date', { ascending: false })
+                .order('created_at', { ascending: false })
+                .limit(5);
             
-            const names = user.full_name.split(' ');
-            let initials = names[0].charAt(0);
-            if(names.length > 1) initials += names[1].charAt(0);
-            document.getElementById('user-initial').textContent = initials.toUpperCase();
+            renderRecentTransactions(recentTrx || []);
         }
 
-        // Logout
-        document.getElementById('logout-btn').addEventListener('click', function() {
-            localStorage.removeItem('rm_token');
-            localStorage.removeItem('rm_user');
-            window.location.href = 'index.html';
-        });
+        function renderRecentTransactions(transactions) {
+            const tbody = document.getElementById('recent-transactions-body');
+            tbody.innerHTML = ''; 
+
+            if(transactions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-slate-500 font-medium">No transactions recorded yet.</td></tr>`;
+                return;
+            }
+
+            transactions.forEach(trx => {
+                const partyName = trx.parties ? trx.parties.party_name : 'Unknown Party';
+                const formattedDate = new Date(trx.transaction_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                
+                let debitAmount = '-';
+                let creditAmount = '-';
+                
+                if(trx.transaction_type === 'Debit') {
+                    debitAmount = `<span class="text-red-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                } else {
+                    creditAmount = `<span class="text-emerald-600 font-bold">৳ ${Number(trx.amount).toLocaleString()}</span>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50/50 transition-colors';
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-slate-600">${formattedDate}</td>
+                    <td class="px-6 py-4 font-bold text-slate-800">${partyName}</td>
+                    <td class="px-6 py-4 text-slate-600 text-sm truncate max-w-xs">${trx.description || '-'}</td>
+                    <td class="px-6 py-4 text-right bg-red-50/30">${debitAmount}</td>
+                    <td class="px-6 py-4 text-right bg-emerald-50/30">${creditAmount}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // পেজ লোড হওয়ার সাথে সাথেই ডাটা ক্যালকুলেশন শুরু
+        loadDashboardData();
     </script>
 </body>
 </html>
