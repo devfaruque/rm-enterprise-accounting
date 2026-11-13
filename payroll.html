@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR & Payroll - RM Enterprise</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+                    colors: { brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 900: '#0c4a6e' }, sidebar: '#ffffff', background: '#f8fafc' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-sans text-slate-800 flex h-screen overflow-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Premium Sidebar -->
+    <aside class="w-64 bg-sidebar border-r border-slate-200/60 hidden md:flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-20 relative">
+        <div class="h-20 flex items-center px-6 border-b border-slate-100">
+            <img src="https://rmenterprisebd.com/assets/img/logo/logo-mark.png" alt="Logo" class="h-10 w-auto mr-3 drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-[17px] font-bold text-slate-900 tracking-tight leading-tight">RM Enterprise</span>
+                <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">Agency RL-1348</span>
+            </div>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-8 custom-scrollbar">
+            <div class="space-y-1.5">
+                <a href="dashboard.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-brand-600 rounded-xl font-medium transition-all group">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+            </div>
+            <div>
+                <h3 class="px-4 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Finance & Admin</h3>
+                <div class="space-y-1">
+                    <a href="parties.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Agents & Clients</a>
+                    <a href="transactions.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Transactions Ledger</a>
+                    <a href="banking.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Banking & Accounts</a>
+                    <a href="expenses.html" class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-slate-50 rounded-xl font-medium transition-all">Daily Expenses</a>
+                    <a href="payroll.html" class="flex items-center px-4 py-3 bg-gradient-to-r from-brand-500 to-brand-600 text-white rounded-xl font-semibold shadow-md transition-all">
+                        <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        HR & Payroll
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0 relative">
+        <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-8 z-10 sticky top-0">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">HR & Payroll (বেতন শিট)</h2>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Manage employee salaries, allowances, and deductions</p>
+            </div>
+            <div class="flex items-center gap-3 cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 font-bold shadow-sm">RA</div>
+                <p class="hidden md:block text-sm font-bold text-slate-700 leading-tight">Super Admin</p>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                <h3 class="text-lg font-bold text-slate-800">Our Employees</h3>
+                <div class="flex gap-3 w-full md:w-auto">
+                    <button onclick="openEmpModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-5 py-2.5 rounded-xl font-semibold shadow-sm transition-all active:scale-95">
+                        Add New Employee
+                    </button>
+                    <button onclick="openSalaryModal()" class="w-full md:w-auto flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm shadow-brand-500/30 transition-all active:scale-95">
+                        Process Salary (বেতন দিন)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Employees Table -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden mb-8">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Employee Name</th>
+                                <th class="px-6 py-4 font-semibold">Designation & Grade</th>
+                                <th class="px-6 py-4 font-semibold">Phone</th>
+                                <th class="px-6 py-4 font-semibold text-right">Basic Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody id="emp-body" class="divide-y divide-slate-100 text-sm">
+                            <tr><td colspan="4" class="text-center py-6 text-slate-500">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 mb-4">Recent Salary Payments (বেতন হিস্ট্রি)</h3>
+            
+            <!-- Salary History Table -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-100">
+                                <th class="px-6 py-4 font-semibold">Month & Year</th>
+                                <th class="px-6 py-4 font-semibold">Employee Name</th>
+                                <th class="px-6 py-4 font-semibold text-right">Basic + Allowances</th>
+                                <th class="px-6 py-4 font-semibold text-right text-red-500">Deduction</th>
+                                <th class="px-6 py-4 font-semibold text-right text-emerald-600">Net Paid Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payroll-body" class="divide-y divide-slate-100 text-sm">
+                            <tr><td colspan="5" class="text-center py-6 text-slate-500">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal 1: Add Employee -->
+    <div id="emp-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Add New Employee</h3>
+                <button onclick="closeEmpModal()" class="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1.5 border">X</button>
+            </div>
+            <div class="p-6">
+                <form id="emp-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">Employee Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="emp_name" required class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Designation <span class="text-red-500">*</span></label>
+                            <input type="text" id="emp_desig" required placeholder="e.g. Manager" class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Grade (1-20) <span class="text-red-500">*</span></label>
+                            <input type="number" id="emp_grade" required min="1" max="20" class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Basic Salary (৳) <span class="text-red-500">*</span></label>
+                            <input type="number" id="emp_basic" required min="1" class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 font-bold">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Phone Number</label>
+                            <input type="tel" id="emp_phone" class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeEmpModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/50 rounded-xl">Cancel</button>
+                <button onclick="saveEmployee(event)" class="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm">Save Employee</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Process Salary -->
+    <div id="salary-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                <h3 class="text-lg font-bold text-slate-800">Process Salary</h3>
+                <button onclick="closeSalaryModal()" class="text-slate-400 hover:text-slate-600 bg-white rounded-full p-1.5 border">X</button>
+            </div>
+            <div class="p-6">
+                <form id="salary-form" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Select Employee <span class="text-red-500">*</span></label>
+                            <select id="sal_emp_id" onchange="calculateSalary()" required class="block w-full px-4 py-2.5 border rounded-xl bg-slate-50 focus:bg-white font-bold text-brand-600">
+                                <option value="" disabled selected>Select an employee</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Month <span class="text-red-500">*</span></label>
+                            <select id="sal_month" required class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white">
+                                <option value="January">January</option><option value="February">February</option>
+                                <option value="March">March</option><option value="April">April</option>
+                                <option value="May">May</option><option value="June">June</option>
+                                <option value="July">July</option><option value="August">August</option>
+                                <option value="September">September</option><option value="October">October</option>
+                                <option value="November">November</option><option value="December">December</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Year <span class="text-red-500">*</span></label>
+                            <input type="number" id="sal_year" required value="2026" class="block w-full px-4 py-2 border rounded-xl bg-slate-50 focus:bg-white">
+                        </div>
+                    </div>
+                    
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-100 grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Basic Salary (৳)</label>
+                            <!-- readonly সরানো হয়েছে এবং onkeyup যুক্ত করা হয়েছে -->
+                            <input type="number" id="sal_basic" onkeyup="updateNetSalary()" class="block w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-600 font-bold focus:outline-none focus:ring-1 focus:ring-brand-500" value="0">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">House Rent</label>
+                            <!-- readonly সরানো হয়েছে এবং onkeyup যুক্ত করা হয়েছে -->
+                            <input type="number" id="sal_rent" onkeyup="updateNetSalary()" class="block w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-emerald-600 font-bold focus:outline-none focus:ring-1 focus:ring-emerald-500" value="0">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Medical / Others</label>
+                            <!-- readonly সরানো হয়েছে এবং onkeyup যুক্ত করা হয়েছে -->
+                            <input type="number" id="sal_medical" onkeyup="updateNetSalary()" class="block w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-emerald-600 font-bold focus:outline-none focus:ring-1 focus:ring-emerald-500" value="0">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Deductions (কাটা)</label>
+                            <input type="number" id="sal_deduct" value="0" onkeyup="updateNetSalary()" class="block w-full px-3 py-2 bg-white border border-red-200 rounded-lg text-red-600 font-bold focus:outline-none focus:ring-1 focus:ring-red-500">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center bg-slate-800 text-white p-4 rounded-xl shadow-inner mt-4">
+                        <span class="font-bold text-lg">Net Payable Salary:</span>
+                        <span id="display_net_salary" class="font-extrabold text-2xl text-emerald-400">৳ 0</span>
+                        <input type="hidden" id="sal_net">
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                <button onclick="closeSalaryModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-200/50 rounded-xl">Cancel</button>
+                <button onclick="saveSalary(event)" class="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-sm">Confirm Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        const SUPABASE_URL = 'https://mtjzgxkfqmtifgtdrbkf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10anpneGtmcW10aWZndGRyYmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM4MTMwNDEsImV4cCI6MjEwOTM4OTA0MX0.3W3RxgtzGMJgssrjx18-Z96SkxtD7ZNGqnfhJt9aRiE';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let globalEmployees = [];
+
+        function openEmpModal() { document.getElementById('emp-modal').classList.remove('hidden'); setTimeout(() => document.getElementById('emp-modal').classList.remove('opacity-0'), 10); }
+        function closeEmpModal() { document.getElementById('emp-modal').classList.add('opacity-0'); setTimeout(() => { document.getElementById('emp-modal').classList.add('hidden'); document.getElementById('emp-form').reset(); }, 300); }
+        
+        function openSalaryModal() { 
+            document.getElementById('salary-modal').classList.remove('hidden'); 
+            setTimeout(() => document.getElementById('salary-modal').classList.remove('opacity-0'), 10);
+            
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            document.getElementById('sal_month').value = monthNames[new Date().getMonth()];
+            document.getElementById('sal_year').value = new Date().getFullYear();
+        }
+        function closeSalaryModal() { document.getElementById('salary-modal').classList.add('opacity-0'); setTimeout(() => { document.getElementById('salary-modal').classList.add('hidden'); document.getElementById('salary-form').reset(); document.getElementById('display_net_salary').innerText = "৳ 0"; }, 300); }
+
+        async function fetchHRData() {
+            const { data: employees, error: empError } = await supabaseClient.from('employees').select('*').order('created_at', { ascending: false });
+            globalEmployees = employees || [];
+            
+            const empBody = document.getElementById('emp-body');
+            const empSelect = document.getElementById('sal_emp_id');
+            empBody.innerHTML = '';
+            empSelect.innerHTML = '<option value="" disabled selected>Select an employee</option>';
+
+            if(globalEmployees.length === 0) {
+                empBody.innerHTML = '<tr><td colspan="4" class="text-center py-6 text-slate-500">No employees added yet.</td></tr>';
+            } else {
+                globalEmployees.forEach(emp => {
+                    empSelect.innerHTML += `<option value="${emp.id}">${emp.employee_name} (${emp.designation})</option>`;
+                    empBody.innerHTML += `
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="px-6 py-4 font-bold text-slate-800">${emp.employee_name}</td>
+                            <td class="px-6 py-4"><span class="px-2 py-1 bg-brand-50 text-brand-700 text-xs rounded border">${emp.designation}</span> <span class="text-xs text-slate-500 font-bold ml-1">Grade: ${emp.grade}</span></td>
+                            <td class="px-6 py-4 text-slate-600">${emp.phone || '-'}</td>
+                            <td class="px-6 py-4 text-right font-bold text-slate-700">৳ ${Number(emp.basic_salary).toLocaleString()}</td>
+                        </tr>`;
+                });
+            }
+
+            const { data: payroll, error: payError } = await supabaseClient.from('payroll').select('*, employees(employee_name)').order('created_at', { ascending: false });
+            const payBody = document.getElementById('payroll-body');
+            payBody.innerHTML = '';
+
+            if(!payroll || payroll.length === 0) {
+                payBody.innerHTML = '<tr><td colspan="5" class="text-center py-6 text-slate-500">No salary processed yet.</td></tr>';
+            } else {
+                payroll.forEach(p => {
+                    const totalAllowances = Number(p.basic_amount) + Number(p.house_rent) + Number(p.medical_allowance);
+                    payBody.innerHTML += `
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="px-6 py-4 font-bold text-slate-700">${p.salary_month} ${p.salary_year}</td>
+                            <td class="px-6 py-4 font-bold text-brand-700">${p.employees ? p.employees.employee_name : 'Unknown'}</td>
+                            <td class="px-6 py-4 text-right font-medium text-slate-600">৳ ${totalAllowances.toLocaleString()}</td>
+                            <td class="px-6 py-4 text-right font-bold text-red-500">${p.deductions > 0 ? '- ৳ ' + Number(p.deductions).toLocaleString() : '-'}</td>
+                            <td class="px-6 py-4 text-right font-extrabold text-emerald-600">৳ ${Number(p.net_salary).toLocaleString()}</td>
+                        </tr>`;
+                });
+            }
+        }
+
+        function calculateSalary() {
+            const empId = document.getElementById('sal_emp_id').value;
+            const employee = globalEmployees.find(e => e.id == empId);
+            
+            if(employee) {
+                const basic = Number(employee.basic_salary);
+                const houseRent = basic * 0.30; 
+                const medical = basic * 0.10;   
+                
+                document.getElementById('sal_basic').value = basic;
+                document.getElementById('sal_rent').value = houseRent;
+                document.getElementById('sal_medical').value = medical;
+                document.getElementById('sal_deduct').value = 0; 
+                
+                updateNetSalary();
+            }
+        }
+
+        function updateNetSalary() {
+            const basic = Number(document.getElementById('sal_basic').value) || 0;
+            const rent = Number(document.getElementById('sal_rent').value) || 0;
+            const medical = Number(document.getElementById('sal_medical').value) || 0;
+            const deduct = Number(document.getElementById('sal_deduct').value) || 0;
+            
+            const netSalary = (basic + rent + medical) - deduct;
+            
+            document.getElementById('sal_net').value = netSalary;
+            document.getElementById('display_net_salary').innerText = `৳ ${netSalary.toLocaleString()}`;
+        }
+
+        async function saveEmployee(e) {
+            e.preventDefault();
+            const newEmp = {
+                employee_name: document.getElementById('emp_name').value,
+                designation: document.getElementById('emp_desig').value,
+                grade: parseInt(document.getElementById('emp_grade').value),
+                basic_salary: parseFloat(document.getElementById('emp_basic').value),
+                phone: document.getElementById('emp_phone').value
+            };
+            const { error } = await supabaseClient.from('employees').insert([newEmp]);
+            if (error) alert("Error: " + error.message);
+            else { closeEmpModal(); fetchHRData(); }
+        }
+
+        async function saveSalary(e) {
+            e.preventDefault();
+            const newSalary = {
+                employee_id: document.getElementById('sal_emp_id').value,
+                salary_month: document.getElementById('sal_month').value,
+                salary_year: parseInt(document.getElementById('sal_year').value),
+                basic_amount: parseFloat(document.getElementById('sal_basic').value),
+                house_rent: parseFloat(document.getElementById('sal_rent').value),
+                medical_allowance: parseFloat(document.getElementById('sal_medical').value),
+                deductions: parseFloat(document.getElementById('sal_deduct').value) || 0,
+                net_salary: parseFloat(document.getElementById('sal_net').value)
+            };
+            const { error } = await supabaseClient.from('payroll').insert([newSalary]);
+            if (error) alert("Error: " + error.message);
+            else { closeSalaryModal(); fetchHRData(); }
+        }
+
+        fetchHRData();
+    </script>
+</body>
+</html>
